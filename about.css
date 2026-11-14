@@ -1,0 +1,100 @@
+/* ===== SEKCJA „O DORADCY" — ciemna, portret po prawej ===== */
+.adv{
+  --gold:#C8A56A; --ink:#111;
+  --pad:clamp(20px,4vw,64px);
+  --edge:max(var(--pad), (100vw - 1280px) / 2);
+  --ease:cubic-bezier(.22,.61,.36,1);
+  position:relative; height:100svh; box-sizing:border-box; overflow:clip;
+  padding:50px var(--edge);                          /* 50 px zapasu u góry i u dołu */
+  font-family:"Inter",system-ui,sans-serif;
+}
+.adv__eyebrow{display:flex; align-items:center; gap:14px; font-size:10px; font-weight:600; letter-spacing:.32em; text-transform:uppercase}
+.adv__eyebrow::before{content:""; width:34px; height:1px; background:var(--gold)}
+.adv__title{
+  margin-top:clamp(6px,1.4vh,18px);
+  font-weight:800; font-size:clamp(22px, min(3.2vw, 5.6vh), 54px); line-height:1.02; letter-spacing:-0.035em; text-transform:uppercase;
+}
+.adv__lead{margin-top:clamp(8px,1.8vh,22px); font-size:clamp(12px, min(.98vw, 1.75vh), 16px); font-weight:300; line-height:1.6; max-width:620px}
+
+/* statystyki */
+.adv__stat-l{font-size:9.5px; font-weight:600; letter-spacing:.24em; text-transform:uppercase; color:var(--gold)}
+.adv__stat-v{margin-top:clamp(3px,.8vh,8px); font-weight:800; font-size:clamp(20px, min(2.2vw, 4.2vh), 38px); letter-spacing:-0.03em; line-height:1}
+.adv__stat-s{margin-top:clamp(3px,.7vh,8px); font-size:clamp(10.5px,1.4vh,13px); font-weight:300; line-height:1.4}
+
+/* rejony */
+.adv__areas-l{font-size:9.5px; font-weight:600; letter-spacing:.24em; text-transform:uppercase; color:var(--gold)}
+.adv__tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:clamp(6px,1.2vh,12px)}
+.adv__tag{padding:clamp(5px,.9vh,8px) 11px; font-size:clamp(9.5px,1.3vh,11px); font-weight:600; letter-spacing:.1em; text-transform:uppercase; border:1px solid currentColor}
+
+/* przycisk */
+.adv__cta{
+  display:inline-flex; align-items:center; gap:16px; text-decoration:none; align-self:flex-start;
+  padding:clamp(11px,1.9vh,17px) 26px; background:var(--gold); color:#fff;
+  font-size:10.5px; font-weight:600; letter-spacing:.18em; text-transform:uppercase;
+  transition:background .3s var(--ease);
+}
+.adv__cta:hover{background:#b48f55}
+.adv__cta span{font-size:14px; letter-spacing:0; transition:transform .3s var(--ease)}
+.adv__cta:hover span{transform:translateX(4px)}
+
+/* portret (miejsce na zdjęcie) */
+.adv__photo{position:relative; background:#161616; color:#fff; overflow:hidden; display:flex; flex-direction:column; justify-content:flex-end}
+.adv__photo::before,.adv__photo::after{content:""; position:absolute; width:clamp(18px,3vh,32px); height:clamp(18px,3vh,32px); border:1px solid var(--gold)}
+.adv__photo::before{top:clamp(12px,2vh,22px); left:clamp(12px,2vh,22px); border-right:0; border-bottom:0}
+.adv__photo::after{top:clamp(12px,2vh,22px); right:clamp(12px,2vh,22px); border-left:0; border-bottom:0}
+.adv__name{position:relative; padding:clamp(12px,2.4vh,26px) clamp(16px,2vw,28px); border-top:1px solid rgba(255,255,255,.14); background:rgba(0,0,0,.35)}
+.adv__name b{display:block; font-size:clamp(15px,2.4vh,22px); font-weight:800; letter-spacing:-0.02em}
+.adv__name span{display:block; margin-top:4px; font-size:10px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--gold)}
+
+/* animacje wejścia (pokazują się przez skrypt .reveal z index.html) */
+.js .adv__photo.reveal{opacity:1; transform:none; clip-path:inset(100% 0 0 0); transition:clip-path 1s cubic-bezier(.33,.9,.4,1); will-change:clip-path}
+.js .adv__photo.reveal.in{clip-path:inset(0 0 0 0)}
+.js .adv__stat.reveal.d1{transition-delay:.1s}.js .adv__stat.reveal.d2{transition-delay:.2s}.js .adv__stat.reveal.d3{transition-delay:.3s}
+
+/* ============ WERSJA A: ciemna ============ */
+.adv--a{background:#000; color:#fff; display:grid; grid-template-columns:minmax(0,7fr) minmax(0,5fr); gap:clamp(24px,4vw,72px)}
+.adv--a .adv__main{display:flex; flex-direction:column; justify-content:space-between; min-height:0}
+.adv--a .adv__lead{color:rgba(255,255,255,.72)}
+.adv--a .adv__stats{display:grid; grid-template-columns:repeat(3,1fr); gap:0; margin-top:clamp(10px,2.4vh,30px)}
+.adv--a .adv__stat{padding:clamp(8px,1.6vh,18px) clamp(10px,1.4vw,22px) clamp(8px,1.6vh,18px) 0; border-top:1px solid rgba(255,255,255,.2)}
+.adv--a .adv__stat+.adv__stat{padding-left:clamp(10px,1.4vw,22px); border-left:1px solid rgba(255,255,255,.12)}
+.adv--a .adv__stat-s{color:rgba(255,255,255,.6)}
+.adv--a .adv__tag{color:rgba(255,255,255,.78); border-color:rgba(255,255,255,.22)}
+.adv--a .adv__areas{margin-top:clamp(10px,2.2vh,26px)}
+.adv--a .adv__cta{margin-top:clamp(10px,2.2vh,26px)}
+.adv--a .adv__photo{background:#121212; border:1px solid rgba(255,255,255,.1)}
+
+/* wąskie ekrany: pionowo, bez ograniczenia do wysokości ekranu */
+@media (max-width:900px){
+  .adv{height:auto; padding:56px var(--pad); display:block}
+  .adv__photo{min-height:46vh; margin:28px 0 0!important}
+  .adv--a .adv__photo{order:2}
+  .adv--a .adv__stats{grid-template-columns:1fr}
+  .adv--a .adv__stat+.adv__stat{padding-left:0; border-left:0}
+  .adv__title{font-size:clamp(24px,7vw,40px)}
+  .adv__areas,.adv__cta{margin-top:20px}
+}
+@media (prefers-reduced-motion:reduce){.js .adv__photo.reveal{clip-path:none; transition:none}}
+
+/* ===== wersja A: zdjęcie bez marginesu od góry i od prawej; lżejsza lewa kolumna (rejony przeniesione na zdjęcie) ===== */
+@media (min-width:901px){
+  .adv--a{padding:0 0 50px 0; gap:clamp(28px,5vw,96px); grid-template-columns:minmax(0,7fr) minmax(0,5fr)}
+  .adv--a .adv__main{padding:50px 0 0 var(--edge); justify-content:space-between; gap:clamp(14px,3.4vh,44px)}
+  .adv--a .adv__stats{margin-top:0}
+  .adv--a .adv__stat{padding-top:clamp(10px,2.2vh,26px); padding-bottom:clamp(6px,1.2vh,14px)}
+  .adv--a .adv__stat-v{font-size:clamp(20px, min(2vw, 3.8vh), 34px)}
+  .adv--a .adv__stat-s{margin-top:clamp(4px,.9vh,10px)}
+  .adv--a .adv__cta{margin-top:0}
+  .adv--a .adv__photo{border:0; margin:0 0 0 0}                    /* do góry i do prawej krawędzi ekranu */
+  .adv--a .adv__areas{position:relative; padding:0 clamp(16px,2vw,28px) clamp(12px,2.2vh,24px); margin:0; z-index:1}
+  .adv--a .adv__tag{background:rgba(0,0,0,.35)}
+}
+
+.adv__photo::after,.adv__photo::before{z-index:2}
+
+/* zdjęcie doradcy (img/doradca.jpg) — czarno-białe, wypełnia cały portret */
+.adv__img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 22%; filter:grayscale(1) contrast(1.06)}
+.adv__shade{position:absolute; inset:0; pointer-events:none; background:linear-gradient(to top, rgba(0,0,0,.88) 0%, rgba(0,0,0,.55) 30%, rgba(0,0,0,0) 62%)}
+
+/* tytuł „O doradcy": większy interlinia */
+.adv__title{line-height:1.14}

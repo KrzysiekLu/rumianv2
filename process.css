@@ -1,0 +1,89 @@
+/* ===== SEKCJA PROCES („Jak wygląda współpraca") — oś czasu ===== */
+.process{
+  --gold:#C8A56A; --ink:#111;
+  --pad:clamp(20px,4vw,64px);
+  --edge:max(var(--pad), (100vw - 1280px) / 2);
+  --ease:cubic-bezier(.22,.61,.36,1);
+  position:relative; height:100svh; box-sizing:border-box; overflow:clip;
+  padding:50px var(--edge);                          /* 50 px zapasu u góry i u dołu */
+  display:flex; flex-direction:column;
+  font-family:"Inter",system-ui,sans-serif;
+}
+.process__head{display:flex; justify-content:space-between; align-items:flex-end; gap:24px 48px; flex-wrap:wrap}
+.process__eyebrow{display:flex; align-items:center; gap:14px; font-size:10px; font-weight:600; letter-spacing:.32em; text-transform:uppercase}
+.process__eyebrow::before{content:""; width:34px; height:1px; background:var(--gold)}
+.process__title{
+  margin-top:clamp(6px,1.2vh,16px);
+  font-weight:800; font-size:clamp(24px, min(3.8vw, 6.4vh), 64px); line-height:1; letter-spacing:-0.04em; text-transform:uppercase; white-space:nowrap;
+}
+.process__lead{max-width:420px; font-size:clamp(12px, min(1vw, 1.7vh), 15px); font-weight:300; line-height:1.55}
+
+/* wspólne: numeracja konturowa */
+.p-num{
+  font-weight:800; line-height:1; letter-spacing:-0.03em;
+  font-size:clamp(30px, 7.2vh, 76px);
+  color:currentColor; filter:url(#num-outline);   /* kontur bez wewnętrznych linii (filtr SVG zamiast text-stroke) */
+  transition:color .6s var(--ease), opacity .6s var(--ease);
+}
+.p-h{font-size:clamp(15px, min(1.45vw, 2.7vh), 24px); font-weight:700; letter-spacing:-0.02em; line-height:1.15}
+.p-p{margin-top:clamp(4px,.9vh,10px); font-size:clamp(11.5px,1.5vh,14px); font-weight:300; line-height:1.55}
+
+/* ---------- oś czasu rysowana podczas przewijania ---------- */
+.process--a{background:#f4f2ee; color:var(--ink)}
+.process--a .process__lead{color:rgba(17,17,17,.7)}
+.pa__track{
+  position:relative; flex:1; min-height:0; margin-top:clamp(8px,2.4vh,30px);
+  display:grid; grid-template-columns:repeat(4,1fr); grid-template-rows:minmax(0,1fr) auto minmax(0,1fr);
+}
+.pa__track::before,.pa__track::after{content:""; position:absolute; left:0; right:0; top:50%; height:1px}
+.pa__track::before{background:rgba(17,17,17,.18)}
+.pa__track::after{background:var(--gold); height:2px; margin-top:-.5px; transform:scaleX(var(--pp,0)); transform-origin:left}
+.pa__step{grid-row:1 / 4; display:grid; grid-template-rows:minmax(0,1fr) auto minmax(0,1fr); padding-right:clamp(12px,2vw,36px); opacity:.38; transition:opacity .7s var(--ease)}
+.pa__step.on{opacity:1}
+.pa__node{grid-row:2; position:relative; width:14px; height:14px; border-radius:50%; background:#f4f2ee; border:1px solid rgba(17,17,17,.5); z-index:1; transition:background .5s var(--ease), border-color .5s var(--ease), box-shadow .5s var(--ease)}
+.pa__step.on .pa__node{background:var(--gold); border-color:var(--gold); box-shadow:0 0 0 5px rgba(200,165,106,.22)}
+.pa__node::before{content:""; position:absolute; left:50%; width:1px; height:clamp(14px,3vh,34px); background:rgba(17,17,17,.3)}
+.pa__step:nth-child(odd) .pa__node::before{bottom:100%}
+.pa__step:nth-child(even) .pa__node::before{top:100%}
+.pa__body{display:flex; flex-direction:column}
+.pa__step:nth-child(odd) .pa__body{grid-row:1; justify-content:flex-end; padding-bottom:clamp(18px,4vh,48px)}
+.pa__step:nth-child(even) .pa__body{grid-row:3; justify-content:flex-start; padding-top:clamp(18px,4vh,48px)}
+.pa__body .p-num{margin-bottom:clamp(6px,1.4vh,16px); color:var(--ink); opacity:.55}
+.pa__step.on .p-num{color:var(--gold); filter:none; opacity:1}
+.pa__body .p-p{color:rgba(17,17,17,.7)}
+
+/* wąskie ekrany: prosta lista pionowa, bez ograniczenia do wysokości ekranu */
+@media (max-width:900px){
+  .process{height:auto; padding:56px var(--pad)}
+  .process__title{white-space:normal}
+  .pa__track{grid-template-columns:1fr; grid-template-rows:none; gap:28px; margin-top:28px}
+  .pa__track::before,.pa__track::after{display:none}
+  .pa__step{grid-row:auto; display:block; opacity:1; padding:0 0 0 22px; border-left:1px solid rgba(17,17,17,.2)}
+  .pa__node{display:none}
+  .pa__step .pa__body{padding:0!important}
+}
+@media (prefers-reduced-motion:reduce){
+  .pa__step{opacity:1}.pa__track::after{transform:none}
+}
+
+/* ===== animacja kroków: po „zapaleniu" węzła numer, tytuł i opis odsłaniają się od dołu kolejno; węzeł pulsuje ===== */
+@media (min-width:901px){
+  .pa__step{opacity:1}
+  .pa__body .p-num,.pa__body .p-h,.pa__body .p-p{
+    clip-path:inset(0 0 100% 0); transform:translateY(22px); opacity:0;
+    transition:clip-path .9s cubic-bezier(.33,.9,.4,1), transform .9s cubic-bezier(.33,.9,.4,1), opacity .5s linear, color .6s;
+  }
+  .pa__body .p-h{transition-delay:.14s}
+  .pa__body .p-p{transition-delay:.28s}
+  .pa__step.on .p-num,.pa__step.on .p-h,.pa__step.on .p-p{clip-path:inset(-8% -2% -8% -2%); transform:none; opacity:1}
+  .pa__step.on .pa__node{animation:pa-pulse 1.2s ease-out 1}
+  .pa__node::before{transform:scaleY(0); transition:transform .5s .1s cubic-bezier(.33,.9,.4,1)}
+  .pa__step:nth-child(odd) .pa__node::before{transform-origin:bottom}
+  .pa__step:nth-child(even) .pa__node::before{transform-origin:top}
+  .pa__step.on .pa__node::before{transform:scaleY(1)}
+}
+@keyframes pa-pulse{0%{box-shadow:0 0 0 0 rgba(200,165,106,.55)}100%{box-shadow:0 0 0 18px rgba(200,165,106,0)}}
+@media (prefers-reduced-motion:reduce){
+  .pa__body .p-num,.pa__body .p-h,.pa__body .p-p{clip-path:none; transform:none; opacity:1; transition:none}
+  .pa__node,.pa__node::before{animation:none; transition:none; transform:none}
+}

@@ -1,0 +1,193 @@
+/* ===== SEKCJA OFERTY ===== */
+html{scroll-behavior:smooth}
+.offers{
+  --pad:clamp(20px,4vw,64px);
+  --gold:#C8A56A; --gold-dark:#b48f55; --ink:#111;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --edge:max(var(--pad), (100vw - 1280px) / 2);   /* lewa krawędź treści (jak nagłówek) */
+  overflow-x:clip;                            /* 100vw przy pasku przewijania nie robi poziomego scrolla */
+  background:#000; color:#fff;                /* czarne tło — płynnie łączy się z ciemnym dołem hero */
+  padding:0 0 clamp(72px,10vw,150px);
+  font-family:"Inter",system-ui,sans-serif;
+}
+.offers__in{width:100%}
+
+/* nagłówek */
+.offers__eyebrow{
+  display:flex; align-items:center; gap:14px;
+  font-size:11px; font-weight:600; letter-spacing:.32em; text-transform:uppercase;
+}
+.offers__eyebrow::before{content:""; width:34px; height:1px; background:var(--gold)}
+.offers__title{
+  margin-top:clamp(18px,2vw,28px);
+  font-weight:800; font-size:clamp(34px,5.4vw,84px); line-height:.98; letter-spacing:-0.04em; text-transform:uppercase;
+}
+.offers__lead{
+  margin-top:clamp(18px,2vw,28px); max-width:520px;
+  font-size:clamp(15px,1.15vw,18px); font-weight:300; line-height:1.6; color:rgba(255,255,255,.72);
+}
+
+/* kafelki */
+.offers__grid{
+  display:grid; grid-template-columns:1fr 1fr; gap:0;
+  margin-top:clamp(40px,5vw,72px);
+  width:100vw; margin-left:calc(50% - 50vw);   /* od krawędzi do krawędzi ekranu, kafelki stykają się */
+}
+.card{
+  position:relative; display:flex; flex-direction:column;
+  padding:clamp(26px,3vw,48px);
+  background:#0f0f0f; color:#fff; border:1px solid rgba(255,255,255,.16);
+  transition:border-color .4s var(--ease), transform .5s var(--ease);
+}
+.card + .card{margin-left:-1px}                 /* wspólna krawędź kafelków */
+.card:first-child{padding-left:var(--edge); border-left:0}
+.card:last-child{padding-right:var(--edge); border-right:0}
+/* kafelek wyróżniony — biały na czarnym tle */
+.card--light{background:#fff; color:var(--ink); border-color:#fff}
+
+.card__head{position:relative; display:flex; align-items:center; gap:18px; padding-bottom:clamp(22px,2.4vw,34px); border-bottom:1px solid rgba(255,255,255,.16)}
+.card--light .card__head{border-color:rgba(17,17,17,.14)}
+/* złota linia pod nazwą portalu — rysuje się od lewej przy najechaniu na kafelek */
+.card__head::after{
+  content:""; position:absolute; left:0; right:0; bottom:-1px; height:1px; background:var(--gold);
+  transform:scaleX(0); transform-origin:left;
+  transition:transform .8s var(--ease);
+}
+.card:hover .card__head::after{transform:scaleX(1)}
+.card__mark{
+  width:54px; height:54px; flex:none; display:grid; place-items:center;
+  font-weight:800; font-size:16px; letter-spacing:.02em;
+  background:#fff; color:var(--ink);
+}
+.card--light .card__mark{background:var(--ink); color:#fff}
+.card__name{font-size:clamp(20px,1.7vw,26px); font-weight:700; letter-spacing:-0.02em; line-height:1.1}
+.card__tag{
+  margin-top:6px; font-size:10px; font-weight:500; letter-spacing:.28em; text-transform:uppercase; color:var(--gold);
+}
+.card__h{margin-top:clamp(24px,2.6vw,36px); font-size:clamp(18px,1.5vw,22px); font-weight:600; letter-spacing:-0.015em; line-height:1.25}
+.card__p{margin-top:12px; font-size:15px; font-weight:300; line-height:1.65; color:rgba(255,255,255,.7)}
+.card--light .card__p{color:rgba(17,17,17,.7)}
+
+.card__list{list-style:none; margin:clamp(22px,2.4vw,32px) 0 clamp(28px,3vw,44px); display:grid; gap:12px}
+.card__list li{display:flex; align-items:center; gap:14px; font-size:14px; font-weight:400}
+.card__list li::before{content:""; width:18px; height:1px; background:var(--gold); flex:none}
+
+/* przyciski — ten sam język co w hero */
+.btn{
+  margin-top:auto;
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  padding:19px 24px; text-decoration:none;
+  font-size:11px; font-weight:600; letter-spacing:.2em; text-transform:uppercase;
+  border:1px solid #fff; color:#fff; background:transparent;
+  transition:background .35s var(--ease), color .35s var(--ease), border-color .35s var(--ease);
+}
+.btn svg{width:16px; height:16px; flex:none; transition:transform .4s var(--ease)}
+.btn:hover svg{transform:translate(3px,-3px)}
+.btn--solid{background:#fff; color:var(--ink)}
+.btn--solid:hover{background:var(--gold); border-color:var(--gold); color:#fff}
+.btn--line:hover{background:#fff; color:var(--ink)}
+.card--light .btn{border-color:var(--gold); background:var(--gold); color:#fff}
+.card--light .btn:hover{background:var(--ink); border-color:var(--ink); color:#fff}
+
+/* pasek off-market */
+.offmarket{
+  margin-top:-1px;
+  width:100vw; margin-left:calc(50% - 50vw);
+  display:flex; align-items:center; gap:clamp(18px,2.4vw,36px); flex-wrap:wrap;
+  padding:clamp(22px,2.6vw,38px) var(--edge);
+  background:#fff; color:var(--ink);                /* jasny pasek */
+  border-top:1px solid rgba(17,17,17,.14);
+  border-bottom:1px solid rgba(17,17,17,.14);      /* oddziela pasek od białej sekcji poniżej */
+}
+.offmarket__icon{width:48px; height:48px; flex:none; display:grid; place-items:center; border:1px solid var(--gold); color:var(--gold)}
+.offmarket__icon svg{width:22px; height:22px}
+.offmarket__txt{flex:1 1 320px}
+.offmarket__h{font-size:clamp(17px,1.4vw,21px); font-weight:600; letter-spacing:-0.015em}
+.offmarket__p{margin-top:6px; font-size:14px; font-weight:300; line-height:1.6; color:rgba(17,17,17,.68)}
+.offmarket .btn{margin-top:0; padding:19px 26px; background:var(--ink); border-color:var(--ink); color:#fff}
+.offmarket .btn:hover{background:var(--gold); border-color:var(--gold); color:#fff}
+
+/* wejście przy scrollu */
+.js .reveal{opacity:0; transform:translateY(22px); transition:opacity .9s var(--ease), transform .9s var(--ease)}
+.js .reveal.in{opacity:1; transform:none}
+/* sekcja ofert — animacja startowa: złota kreska się rysuje, nagłówek odsłania się od dołu,
+   kafelki wjeżdżają kolejno, pasek off-market odsłania się od dołu jak kafelki */
+.js .offers__eyebrow::before{transform:scaleX(0); transform-origin:left; transition:transform .9s .1s var(--ease)}
+.js .offers__eyebrow.in::before{transform:scaleX(1)}
+.js .offers__title.reveal{opacity:1; transform:translateY(36px); clip-path:inset(0 0 100% 0); transition:clip-path .9s cubic-bezier(.33,.9,.4,1), transform .9s cubic-bezier(.33,.9,.4,1); will-change:clip-path,transform}
+.js .offers__title.reveal.in{transform:none; clip-path:inset(-10% -2% -10% -2%)}
+.js .card.reveal{opacity:1; clip-path:inset(100% 0 0 0); transition:clip-path .95s cubic-bezier(.33,.9,.4,1), border-color .4s var(--ease); will-change:clip-path; transform:translateZ(0)}
+.js .card.reveal.in{clip-path:inset(-3px 0 0 0)}
+.js .card.reveal.d1{transition-delay:.12s}
+.js .offmarket.reveal{opacity:1; clip-path:inset(100% 0 0 0); transition:clip-path .95s .05s cubic-bezier(.33,.9,.4,1); will-change:clip-path; transform:translateZ(0)}   /* tak samo jak kafelki */
+.js .offmarket.reveal.in{clip-path:inset(0 0 0 0)}
+.js .reveal.d1{transition-delay:.12s}
+.js .reveal.d2{transition-delay:.24s}
+@media (prefers-reduced-motion:reduce){.js .reveal,.js .card.reveal,.js .offmarket.reveal,.js .offers__title.reveal{opacity:1; transform:none; clip-path:none; transition:none}.js .offers__eyebrow::before{transform:none; transition:none}}
+
+@media (max-width:860px){
+  .offers__grid{grid-template-columns:1fr}
+  .card + .card{margin-left:0; margin-top:-1px}
+  .card:first-child,.card:last-child{padding-left:var(--pad); padding-right:var(--pad)}
+  .card{border-left:0; border-right:0}
+  .offmarket .btn{width:100%; justify-content:center}
+}
+
+/* ===== Dopasowanie do wysokości ekranu (laptopy, Full HD) =====
+   Sekcja ma co najwyżej wysokość viewportu; odstępy i fonty skalują się z wysokością okna (vh). */
+@media (min-width:861px){
+  .offers{
+    min-height:100svh; display:flex; flex-direction:column; justify-content:center;
+    padding-top:clamp(24px,6vh,90px); padding-bottom:0;      /* pasek off-market dochodzi do dolnej krawędzi ekranu */
+    justify-content:flex-start;
+  }
+  .offers__in{width:100%; flex:1; display:flex; flex-direction:column}
+  .offers__title{margin-top:clamp(10px,2vh,26px); font-size:clamp(30px, min(5.4vw, 7.6vh), 84px)}      /* dwa wiersze */
+  .offers__lead{margin-top:clamp(8px,1.8vh,22px); max-width:none; font-size:clamp(13px,min(1.15vw,2vh),18px)}
+  .offers__grid{margin-top:clamp(18px,4.4vh,64px); flex:1}      /* kafelki rozciągają się na wolną wysokość */
+  .card{padding-top:clamp(16px,3.8vh,50px); padding-bottom:clamp(16px,3.8vh,50px)}
+  .card__head{padding-bottom:clamp(12px,2.2vh,30px); gap:clamp(12px,1.4vw,18px)}
+  .card__mark{width:clamp(38px,5.6vh,54px); height:clamp(38px,5.6vh,54px); font-size:clamp(13px,1.8vh,16px)}
+  .card__name{font-size:clamp(18px,min(1.7vw,3vh),26px)}
+  .card__h{margin-top:auto; padding-top:clamp(12px,2.4vh,30px); font-size:clamp(16px,min(1.5vw,2.6vh),22px)}
+  .card__p{margin-top:clamp(6px,1.1vh,12px); font-size:clamp(12.5px,1.65vh,15px); line-height:1.55}
+  .card__list{margin-top:auto; padding-top:clamp(10px,2.2vh,28px); margin-bottom:clamp(14px,2.8vh,38px); gap:clamp(5px,1.1vh,12px)}
+  .card__list li{font-size:clamp(12.5px,1.6vh,14px)}
+  .btn{padding-top:clamp(13px,2.3vh,21px); padding-bottom:clamp(13px,2.3vh,21px)}
+  .offmarket{padding-top:clamp(14px,2.3vh,34px); padding-bottom:clamp(14px,2.3vh,34px)}
+  .offmarket__icon{width:clamp(38px,5vh,48px); height:clamp(38px,5vh,48px)}
+  .offmarket__h{font-size:clamp(15px,2.2vh,21px)}
+  .offmarket__p{font-size:clamp(12.5px,1.6vh,14px); margin-top:4px}
+}
+
+/* jasny blok nagłówkowy z ciemnym tekstem */
+.offers__head{
+  background:#fff; color:var(--ink);
+  padding:clamp(40px,6.5vh,90px) var(--edge) clamp(20px,4vh,54px);
+  border-top:1px solid rgba(17,17,17,.14); border-bottom:1px solid rgba(17,17,17,.14);
+}
+.offers__head .offers__lead{color:rgba(17,17,17,.7)}
+.offers__grid{margin-top:0}
+@media (min-width:861px){ .offers{padding-top:0; padding-bottom:0} }
+
+/* ===== oferty: zagęszczenie względem wysokości okna (zawsze w jednym ekranie) ===== */
+@media (min-width:861px){
+  .offers{height:100svh; min-height:0; overflow:clip}
+  .offers__in{height:100%; display:flex; flex-direction:column}
+  .offers__head{padding-top:clamp(40px,6vh,84px); padding-bottom:clamp(10px,2.4vh,36px)}
+  .offers__head .offers__title{margin-top:clamp(4px,1.1vh,16px); font-size:clamp(22px, min(4.4vw, 5.6vh), 64px)}
+  .offers__head .offers__lead{margin-top:clamp(4px,1vh,12px); font-size:clamp(12px,min(1vw,1.7vh),16px)}
+  .offers__grid{flex:1; min-height:0}
+  .card{padding-top:clamp(12px,2.6vh,40px); padding-bottom:clamp(12px,2.6vh,40px)}
+  .card__mark{width:clamp(32px,4.8vh,50px); height:clamp(32px,4.8vh,50px)}
+  .card__head{padding-bottom:clamp(8px,1.8vh,24px)}
+  .card__h{padding-top:clamp(8px,2vh,26px); font-size:clamp(15px,min(1.4vw,2.5vh),21px)}
+  .card__p{font-size:clamp(11.5px,1.5vh,14.5px); line-height:1.5; margin-top:clamp(4px,.9vh,10px)}
+  .card__list{padding-top:clamp(6px,1.6vh,22px); margin-bottom:clamp(10px,2.2vh,32px); gap:clamp(3px,.8vh,10px)}
+  .card__list li{font-size:clamp(11.5px,1.5vh,13.5px)}
+  .btn{padding-top:clamp(10px,1.9vh,18px); padding-bottom:clamp(10px,1.9vh,18px)}
+  .offmarket{padding-top:clamp(10px,2vh,28px); padding-bottom:clamp(10px,2vh,28px)}
+  .offmarket__icon{width:clamp(32px,4.4vh,44px); height:clamp(32px,4.4vh,44px)}
+  .offmarket__h{font-size:clamp(14px,2vh,19px)}
+  .offmarket__p{font-size:clamp(11.5px,1.5vh,13.5px)}
+}

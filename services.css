@@ -1,0 +1,350 @@
+/* ===== SEKCJA USŁUGI (Specjalizacja) ===== */
+.services{
+  --pad:clamp(20px,4vw,64px);
+  --gold:#C8A56A; --ink:#111;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --edge:max(var(--pad), (100vw - 1280px) / 2);
+  overflow:clip;
+  background:#fff; color:var(--ink);
+  padding:0;
+  font-family:"Inter",system-ui,sans-serif;
+}
+.services__in{width:100%}
+
+.services__eyebrow{
+  display:flex; align-items:center; gap:14px;
+  font-size:11px; font-weight:600; letter-spacing:.32em; text-transform:uppercase;
+}
+.services__eyebrow::before{content:""; width:34px; height:1px; background:var(--gold)}
+.services__title{
+  margin-top:clamp(10px,2vh,26px);
+  font-weight:800; font-size:clamp(30px,min(5.4vw,7.6vh),84px); line-height:.98; letter-spacing:-0.04em; text-transform:uppercase;
+}
+.services__lead{
+  margin-top:clamp(8px,1.8vh,22px); max-width:560px;
+  font-size:clamp(13px,min(1.15vw,2vh),18px); font-weight:300; line-height:1.6; color:rgba(17,17,17,.7);
+}
+
+/* kafelki — od krawędzi do krawędzi, stykają się ze sobą */
+.services__grid{
+  display:grid; grid-template-columns:repeat(4,1fr);
+  margin-top:clamp(18px,4.4vh,64px);
+  width:100vw; margin-left:calc(50% - 50vw);
+}
+.svc{
+  position:relative; display:flex; flex-direction:column;
+  padding:clamp(18px,4vh,52px) clamp(20px,2.4vw,40px);
+  border-right:1px solid rgba(17,17,17,.14); border-top:1px solid rgba(17,17,17,.14);
+  background:#fff; color:var(--ink);
+  /* wejście: kafelki przesunięte względem siebie na wysokość — wyrównują się podczas przewijania do sekcji (--sp ustawia JS) */
+  transform:translate3d(0, calc((1 - var(--sp, 1)) * var(--k, 0) * 1vh), 0);
+  opacity:calc(.35 + .65 * var(--sp, 1));
+  will-change:transform,opacity;
+  transition:background .7s var(--ease);
+}
+.svc:nth-child(1){--k:13}      /* przesunięcie startowe w vh — skaluje się z wysokością ekranu */
+.svc:nth-child(2){--k:0}
+.svc:nth-child(3){--k:24}
+.svc:nth-child(4){--k:7}
+.svc:last-child{border-right:0}
+.svc:first-child{padding-left:var(--edge)}
+.svc:last-child{padding-right:var(--edge)}
+.svc::after{                          /* delikatna srebrna linia u dołu kafelka */
+  content:""; position:absolute; left:0; right:0; bottom:0; height:2px; background:linear-gradient(90deg,#8e949b,#d4d7da);
+  transform:scaleX(0); transform-origin:left; transition:transform .9s var(--ease);
+}
+.svc:hover{background:#f4f5f6}
+.svc:hover::after{transform:scaleX(1)}
+
+.svc__top{display:flex; align-items:center; justify-content:space-between}
+.svc__icon{
+  width:clamp(40px,6vh,54px); height:clamp(40px,6vh,54px); display:grid; place-items:center;
+  background:var(--gold); border:1px solid var(--gold); color:#fff;     /* złote tło, biała ikona */
+  transition:background .5s var(--ease), border-color .5s var(--ease);
+}
+.svc__icon svg{width:46%; height:46%}
+.svc:hover .svc__icon{background:#b48f55; border-color:#b48f55}
+.svc__num{font-size:11px; font-weight:600; letter-spacing:.28em; color:rgba(17,17,17,.4); transition:color .5s var(--ease)}
+
+.svc__h{
+  margin-top:auto; padding-top:clamp(18px,4vh,52px);
+  font-size:clamp(18px,min(1.6vw,3vh),26px); font-weight:700; letter-spacing:-0.02em; line-height:1.15;
+}
+.svc__p{
+  margin-top:clamp(8px,1.4vh,16px);
+  min-height:8.25em;                       /* 5 linii — nagłówki i linie wyrównane między kafelkami */
+  font-size:clamp(13px,1.7vh,15px); font-weight:300; line-height:1.65; color:rgba(17,17,17,.7);
+  transition:color .5s var(--ease);
+}
+
+.svc__tag{
+  position:relative; margin-top:auto; padding-bottom:12px; min-height:calc(3em + 12px);
+  font-size:10px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; line-height:1.5;
+}
+.svc__tag::after{                       /* złota linia pod podpisem — rozszerza się na hover, nie zmienia zawijania tekstu */
+  content:""; position:absolute; left:0; bottom:0; width:22px; height:1px; background:var(--gold);
+  transition:width .7s var(--ease);
+}
+.svc:hover .svc__tag::after{width:64px}
+.svc__tag-wrap{margin-top:auto; padding-top:clamp(14px,2.4vh,26px); border-top:1px solid rgba(17,17,17,.14); transition:border-color .5s var(--ease)}
+
+/* animacja startowa — jak w ofertach: odsłanianie od dołu, kolejno */
+.js .services__eyebrow::before{transform:scaleX(0); transform-origin:left; transition:transform .9s .1s var(--ease)}
+.js .services__eyebrow.in::before{transform:scaleX(1)}
+.js .services__title.reveal{opacity:1; transform:translateY(36px); clip-path:inset(0 0 100% 0); transition:clip-path .9s cubic-bezier(.33,.9,.4,1), transform .9s cubic-bezier(.33,.9,.4,1); will-change:clip-path,transform}
+.js .services__title.reveal.in{transform:none; clip-path:inset(-10% -2% -10% -2%)}
+@media (prefers-reduced-motion:reduce){
+  .js .services__title.reveal{opacity:1; transform:none; clip-path:none; transition:none}
+  .js .services__eyebrow::before{transform:none; transition:none}
+}
+
+@media (max-width:1100px){
+  .services__grid{grid-template-columns:1fr 1fr}
+  .svc:nth-child(2n){border-right:0}
+  .svc{border-bottom:1px solid rgba(17,17,17,.14)}
+  .svc:first-child,.svc:last-child{padding-left:clamp(20px,2.4vw,40px); padding-right:clamp(20px,2.4vw,40px)}
+  .svc:nth-child(odd){padding-left:var(--pad)}
+  .svc:nth-child(even){padding-right:var(--pad)}
+}
+@media (max-width:620px){
+  .services__grid{grid-template-columns:1fr}
+  .svc{border-right:0; padding-left:var(--pad)!important; padding-right:var(--pad)!important}
+}
+
+/* dopasowanie do wysokości ekranu (laptopy, Full HD) — kafelki rozciągają się na wolną wysokość */
+@media (min-width:861px){
+  .services{min-height:100svh; display:flex; flex-direction:column}
+  .services__in{width:100%; flex:1; display:flex; flex-direction:column}
+  .services__grid{flex:1}
+}
+
+/* nagłówek + przycisk „Zobacz oferty" */
+.services__cta{
+  display:inline-flex; align-items:center; gap:16px; flex:none;
+  padding:clamp(14px,2.2vh,18px) 28px; text-decoration:none;
+  background:var(--gold); color:#fff;
+  font-size:11px; font-weight:600; letter-spacing:.2em; text-transform:uppercase;
+  transition:background .3s var(--ease);
+}
+.services__cta:hover{background:#b48f55}
+.services__arrow{font-size:15px; letter-spacing:0; transition:transform .3s var(--ease)}
+.services__cta:hover .services__arrow{transform:translateX(4px)}
+
+/* ciemny blok nagłówkowy (płynnie łączy się z czarnym dołem hero) */
+.services__head{
+  display:block; background:#000; color:#fff;
+  padding:clamp(48px,8vh,110px) var(--edge) clamp(22px,4.4vh,60px);
+}
+.services__head .services__lead{color:rgba(255,255,255,.72)}
+.services__grid{margin-top:0; border-top:0}
+.svc{border-top:0}
+
+/* stopka z przyciskiem pod kafelkami */
+.services__foot{
+  padding:clamp(16px,3.2vh,40px) var(--edge);
+  border-top:1px solid rgba(17,17,17,.14); background:#fff;
+}
+
+/* ===== WARIANT „alt": kafelki 2 i 4 ciemne, podpisy rozwijają się po najechaniu ===== */
+.services--alt .svc:nth-child(even){background:#111; color:#fff; border-right-color:rgba(255,255,255,.12)}
+.services--alt .svc:nth-child(even) .svc__p{color:rgba(255,255,255,.72)}
+.services--alt .svc:nth-child(even) .svc__num{color:rgba(255,255,255,.4)}
+.services--alt .svc:nth-child(even) .svc__tag-wrap{border-top-color:rgba(255,255,255,.2)}
+.services--alt .svc:nth-child(even):hover{background:#1b1b1b}
+.services--alt .svc:nth-child(even)::after{background:linear-gradient(90deg,#C8A56A,#e6cfa2)}
+
+/* tytuł: największy rozmiar, przy którym najdłuższy tytuł mieści się w jednej linii w kafelku */
+.services__grid{container-type:inline-size}
+.services--alt .svc__h{
+  --pad-i:clamp(20px,2.4vw,40px);
+  font-size:clamp(16px, calc(((100cqw - 2 * var(--edge)) / 4 - 2 * var(--pad-i)) / 11), 42px);
+  white-space:nowrap; transform-origin:left bottom;
+  transition:transform .7s var(--ease);
+}
+.services--alt .svc:hover .svc__h,
+.services--alt .svc:focus-within .svc__h{transform:scale(.72)}
+
+/* szerokości kolumn: skrajne kafelki są szersze o margines (--edge), więc treść wszystkich ma podobną szerokość */
+@media (min-width:1101px){
+  .services__grid{grid-template-columns:calc((100% - 2 * var(--edge)) / 4 + var(--edge)) minmax(0,1fr) minmax(0,1fr) calc((100% - 2 * var(--edge)) / 4 + var(--edge))}
+}
+@media (max-width:1100px){
+  .services--alt .svc__h{font-size:clamp(18px, calc((50cqw - 2 * var(--pad-i)) / 11), 38px)}
+}
+@media (max-width:620px){
+  .services--alt .svc__h{font-size:clamp(20px, calc((100cqw - 2 * var(--pad)) / 11), 38px)}
+}
+
+/* opis + podpis: jeden zwijany blok (grid 0fr→1fr = dokładna wysokość, bez „zgadywania" max-height), animacja liniowa */
+.services--alt .svc__more{display:grid; grid-template-rows:0fr; transition:grid-template-rows .45s linear}
+.services--alt .svc__more-in{overflow:hidden; min-height:0; opacity:0; transition:opacity .45s linear}
+.services--alt .svc__p{min-height:0}
+.services--alt .svc__tag-wrap{margin-top:clamp(14px,2.4vh,26px)}
+.services--alt .svc:hover .svc__more,
+.services--alt .svc:focus-within .svc__more{grid-template-rows:1fr}
+.services--alt .svc:hover .svc__more-in,
+.services--alt .svc:focus-within .svc__more-in{opacity:1}
+.services--alt .svc__h{transition:transform .45s linear}
+@media (hover:none){
+  .services--alt .svc__more{grid-template-rows:1fr}
+  .services--alt .svc__more-in{opacity:1}
+  .services--alt .svc__h{transform:scale(.72)}
+}
+
+/* wariant alt: jasny blok nagłówkowy z ciemnym tekstem */
+.services--alt .services__head{
+  background:#fff; color:var(--ink);
+  border-top:1px solid rgba(17,17,17,.14); border-bottom:1px solid rgba(17,17,17,.14);
+}
+.services--alt .services__head .services__lead{color:rgba(17,17,17,.7)}
+
+/* ===== WARIANT alt — układ asymetryczny (desktop) =====
+   Lewa kolumna: nagłówek, przycisk i niski kafelek 3; środek: wysoki kafelek 1; prawa: kafelki 2 i 4 różnej wysokości. */
+@media (min-width:1101px){
+  .services--alt .services__in{
+    display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); grid-template-rows:auto auto minmax(0,1fr);
+  }
+  .services--alt .services__grid{display:contents}
+  .services--alt .services__head{grid-column:1 / 6; grid-row:1; border-bottom:0; padding-left:var(--edge); padding-right:clamp(24px,3vw,48px)}
+  .services--alt .services__foot{grid-column:1 / 6; grid-row:2; border-top:0; padding-top:0; padding-left:var(--edge); padding-right:clamp(24px,3vw,48px)}
+  .services--alt .services__head .services__title{font-size:clamp(26px, min(3.5vw, 6.4vh), 64px)}
+
+  .services--alt .svc{container-type:inline-size; border:0; padding-left:clamp(20px,2.4vw,40px); padding-right:clamp(20px,2.4vw,40px)}
+  .services--alt .svc:nth-child(1){grid-column:6 / 10; grid-row:1 / 4; background:#111; color:#fff}
+  .services--alt .svc:nth-child(2){grid-column:10 / 13; grid-row:1 / 3; background:#fff; color:var(--ink); border-top:1px solid rgba(17,17,17,.14)}
+  .services--alt .svc:nth-child(3){grid-column:1 / 6; grid-row:3; background:#efede8; padding-left:var(--edge)}
+  .services--alt .svc:nth-child(4){grid-column:10 / 13; grid-row:3; background:#111; color:#fff}
+
+  /* kolory tekstu na ciemnych kafelkach (1 i 4) */
+  .services--alt .svc:nth-child(1) .svc__p,.services--alt .svc:nth-child(4) .svc__p{color:rgba(255,255,255,.72)}
+  .services--alt .svc:nth-child(1) .svc__num,.services--alt .svc:nth-child(4) .svc__num{color:rgba(255,255,255,.4)}
+  .services--alt .svc:nth-child(1) .svc__tag-wrap,.services--alt .svc:nth-child(4) .svc__tag-wrap{border-top-color:rgba(255,255,255,.2)}
+  .services--alt .svc:nth-child(1):hover,.services--alt .svc:nth-child(4):hover{background:#1b1b1b}
+  .services--alt .svc:nth-child(2):hover{background:#f4f5f6}
+  .services--alt .svc:nth-child(3):hover{background:#e7e4de}
+  /* kafelki 2 i 3 były „parzyste/nieparzyste" — zdejmij poprzednie wymuszenia kolorów */
+  .services--alt .svc:nth-child(2) .svc__p,.services--alt .svc:nth-child(3) .svc__p{color:rgba(17,17,17,.7)}
+  .services--alt .svc:nth-child(2) .svc__num,.services--alt .svc:nth-child(3) .svc__num{color:rgba(17,17,17,.4)}
+  .services--alt .svc:nth-child(2) .svc__tag-wrap,.services--alt .svc:nth-child(3) .svc__tag-wrap{border-top-color:rgba(17,17,17,.14)}
+  .services--alt .svc:nth-child(2)::after,.services--alt .svc:nth-child(3)::after{background:linear-gradient(90deg,#8e949b,#d4d7da)}
+  .services--alt .svc:nth-child(1)::after,.services--alt .svc:nth-child(4)::after{background:linear-gradient(90deg,#C8A56A,#e6cfa2)}
+
+  /* tytuł: rozmiar zależny od szerokości kafelka — duży kafelek = większy tytuł (hierarchia) */
+  .services--alt .svc__h{font-size:clamp(17px, calc(100cqw / 11.4), 50px)}
+}
+
+/* wariant alt — każdy kafelek wjeżdża z innej strony (--sp ustawia JS podczas przewijania), tytuł bliżej środka, bez numerów */
+.services--alt .svc{
+  transform:translate3d(calc((1 - var(--sp, 1)) * var(--kx, 0) * 1vw), calc((1 - var(--sp, 1)) * var(--ky, 0) * 1vh), 0);
+  opacity:calc(.6 + .4 * var(--sp, 1));
+}
+.services--alt .svc:nth-child(1){--kx:0;   --ky:-70}    /* z góry */
+.services--alt .svc:nth-child(2){--kx:70; --ky:0}       /* z prawej */
+.services--alt .svc:nth-child(3){--kx:-70; --ky:0}      /* z lewej */
+.services--alt .svc:nth-child(4){--kx:0;   --ky:70}     /* z dołu */
+.services--alt .svc__num{display:none}
+.services--alt .svc__h{margin-top:auto; margin-bottom:auto; padding-top:0}
+
+/* wariant alt — tekst zawsze widoczny (bez rozwijania po najechaniu) */
+.services--alt .svc__more{grid-template-rows:1fr; transition:none}
+.services--alt .svc__more-in{opacity:1; transition:none}
+.services--alt .svc__h,
+.services--alt .svc:hover .svc__h,
+.services--alt .svc:focus-within .svc__h{transform:none; transition:none}
+/* tytuł, opis i podpis jako jedna grupa wyśrodkowana w pionie (bliżej środka kafelka) */
+.services--alt .svc__h{margin-top:auto; margin-bottom:0}
+.services--alt .svc__more{margin-bottom:auto}
+
+/* ===== wariant alt (desktop): zagęszczenie względem wysokości okna — cała sekcja mieści się w jednym ekranie ===== */
+@media (min-width:1101px){
+  .services--alt{height:100svh; min-height:0}
+  .services--alt .services__head{padding-top:clamp(56px,7vh,92px); padding-bottom:clamp(12px,2.4vh,32px)}
+  .services--alt .services__head .services__title{margin-top:clamp(6px,1.4vh,18px); font-size:clamp(26px, min(3.3vw, 5.6vh), 60px)}
+  .services--alt .services__head .services__lead{margin-top:clamp(6px,1.3vh,16px); font-size:clamp(13px, min(1vw, 1.8vh), 16px); line-height:1.5}
+  .services--alt .services__foot{padding-bottom:clamp(12px,2.4vh,30px)}
+  .services--alt .services__cta{padding:clamp(11px,1.8vh,16px) 26px}
+  .services--alt .svc{padding-top:clamp(14px,3vh,38px); padding-bottom:clamp(14px,3vh,38px)}
+  .services--alt .svc__icon{width:clamp(34px,5vh,48px); height:clamp(34px,5vh,48px)}
+  .services--alt .svc__p{font-size:clamp(12px,1.55vh,14.5px); line-height:1.55; margin-top:clamp(6px,1.1vh,12px)}
+  .services--alt .svc__tag-wrap{margin-top:clamp(10px,1.8vh,22px); padding-top:clamp(10px,1.8vh,20px)}
+  .services--alt .svc__tag{min-height:calc(3em + 8px); padding-bottom:8px; font-size:clamp(9px,1.2vh,10px)}
+}
+
+/* ===== wariant alt (desktop): 50 px zapasu u góry i u dołu, cała zawartość w obrębie ekranu ===== */
+@media (min-width:1101px){
+  .services--alt{height:100svh; min-height:0; padding:50px 0; background:#fff; box-sizing:border-box}
+  .services--alt .services__in{height:100%; flex:none}
+  .services--alt .services__head{padding-top:clamp(12px,2.4vh,28px); padding-bottom:clamp(8px,1.6vh,18px)}
+  .services--alt .services__eyebrow{font-size:10px}
+  .services--alt .services__head .services__title{margin-top:clamp(4px,1vh,12px); font-size:clamp(20px, min(calc((41.67vw - var(--edge) - 3vw) / 15.6), 4.4vh), 44px); white-space:nowrap}   /* jedna linia: wylicz z szerokości lewej kolumny */
+  .services--alt .services__head .services__title br{display:none}
+  .services--alt .services__head .services__lead{margin-top:clamp(4px,.9vh,10px); font-size:clamp(12px, min(.95vw, 1.6vh), 15px); line-height:1.45}
+  .services--alt .services__foot{padding-bottom:clamp(8px,1.6vh,18px)}
+  .services--alt .services__cta{padding:clamp(9px,1.5vh,14px) 22px; font-size:10px}
+  .services--alt .svc{padding-top:clamp(12px,2.4vh,30px); padding-bottom:clamp(12px,2.4vh,30px)}
+  .services--alt .svc__icon{width:clamp(30px,4.4vh,44px); height:clamp(30px,4.4vh,44px)}
+  .services--alt .svc__p{font-size:clamp(11.5px,1.45vh,14px); margin-top:clamp(4px,.9vh,10px)}
+  .services--alt .svc__tag-wrap{margin-top:clamp(8px,1.5vh,18px); padding-top:clamp(8px,1.4vh,16px)}
+  .services--alt .svc__tag{min-height:calc(3em + 6px); padding-bottom:6px}
+}
+
+/* ===== sekcja usług (symetryczna): cała w jednym ekranie, zagęszczenie względem wysokości okna ===== */
+@media (min-width:1101px){
+  .services:not(.services--alt){height:100svh; min-height:0}
+  .services:not(.services--alt) .services__in{height:100%; display:flex; flex-direction:column}
+  .services:not(.services--alt) .services__head{padding-top:clamp(44px,6.5vh,92px); padding-bottom:clamp(12px,2.6vh,40px)}
+  .services:not(.services--alt) .services__title{margin-top:clamp(4px,1.2vh,16px); font-size:clamp(24px, min(4.6vw, 6.2vh), 68px)}
+  .services:not(.services--alt) .services__lead{margin-top:clamp(4px,1.1vh,14px); font-size:clamp(12px, min(1vw, 1.7vh), 16px); line-height:1.5}
+  .services:not(.services--alt) .services__grid{flex:1; min-height:0}
+  .services:not(.services--alt) .svc{padding-top:clamp(12px,2.8vh,40px); padding-bottom:clamp(12px,2.8vh,40px)}
+  .services:not(.services--alt) .svc__icon{width:clamp(32px,5vh,50px); height:clamp(32px,5vh,50px)}
+  .services:not(.services--alt) .svc__h{padding-top:clamp(10px,2.4vh,40px); font-size:clamp(16px,min(1.5vw,2.8vh),24px)}
+  .services:not(.services--alt) .svc__p{min-height:0; font-size:clamp(11.5px,1.5vh,14.5px); line-height:1.55; margin-top:clamp(4px,1vh,12px)}
+  .services:not(.services--alt) .svc__tag-wrap{padding-top:clamp(8px,1.6vh,22px)}
+  .services:not(.services--alt) .svc__tag{min-height:calc(3em + 6px); padding-bottom:6px; font-size:clamp(9px,1.2vh,10px)}
+  .services:not(.services--alt) .services__foot{padding-top:clamp(10px,2vh,28px); padding-bottom:clamp(10px,2vh,28px)}
+  .services:not(.services--alt) .services__cta{padding:clamp(9px,1.6vh,16px) 24px}
+}
+
+/* ===== przełącznik wersji sekcji „Zakres usług i wsparcia": domyślnie widoczna asymetryczna, klasyczna ukryta ===== */
+#uslugi{display:none}
+html[data-services="sym"] #uslugi{display:block}
+html[data-services="sym"] #zakres{display:none}
+.swt{
+  position:fixed; left:14px; bottom:14px; z-index:90; display:flex; align-items:center;
+  background:rgba(10,10,10,.88); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.14); font-family:"Inter",system-ui,sans-serif;
+}
+.swt__l{padding:0 12px; font-size:9px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:#C8A56A}
+.swt__panel button{padding:9px 12px; background:transparent; color:rgba(255,255,255,.65); border:0; border-left:1px solid rgba(255,255,255,.14); font:600 9.5px "Inter",sans-serif; letter-spacing:.14em; text-transform:uppercase; cursor:pointer; transition:background .25s, color .25s}
+.swt__panel button:hover{color:#fff}
+.swt__panel button.is-on{background:#C8A56A; color:#fff}
+@media (max-width:700px){.swt{left:8px; bottom:8px}.swt__l{display:none}}
+
+/* przełącznik: mały przycisk, panel rozwija się dopiero po kliknięciu */
+.swt{left:8px; bottom:8px; background:transparent; border:0; -webkit-backdrop-filter:none; backdrop-filter:none; align-items:flex-end; flex-direction:column-reverse; gap:4px}
+.swt__toggle{width:22px; height:22px; padding:0; display:grid; place-items:center; background:rgba(10,10,10,.55); color:rgba(255,255,255,.7); border:1px solid rgba(255,255,255,.18) !important; font-size:12px; line-height:1; cursor:pointer; opacity:.55; transition:opacity .25s}
+.swt__toggle:hover,.swt.is-open .swt__toggle{opacity:1}
+.swt__panel{display:none; align-items:center; background:rgba(10,10,10,.92); border:1px solid rgba(255,255,255,.14)}
+.swt.is-open .swt__panel{display:flex}
+.swt__panel button{border-left:1px solid rgba(255,255,255,.14)}
+
+/* ===== sekcja usług (klasyczna) — układ asymetryczny, desktop/laptop: czarny panel z nagłówkiem po lewej + kafelki o różnych szerokościach (5+3 / 3+5), 50 px zapasu góra/dół ===== */
+@media (min-width:1101px){
+  #uslugi{height:100svh; min-height:0; padding:50px 0; box-sizing:border-box; background:#fff}
+  #uslugi .services__in{height:100%; display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); grid-template-rows:minmax(0,1fr) minmax(0,1fr); flex:none}
+  #uslugi .services__grid{display:contents}
+  #uslugi .services__head{grid-column:1 / 5; grid-row:1; background:#000; padding:clamp(14px,3vh,36px) clamp(18px,2vw,32px) 0 var(--edge); display:flex; flex-direction:column; justify-content:flex-end}
+  #uslugi .services__foot{grid-column:1 / 5; grid-row:2; background:#000; border:0; padding:clamp(12px,2.4vh,28px) clamp(18px,2vw,32px) clamp(14px,3vh,36px) var(--edge); display:flex; align-items:flex-start}
+  #uslugi .services__title{font-size:clamp(24px, min(2.9vw, 5.4vh), 54px)}
+  #uslugi .services__lead{max-width:none; font-size:clamp(12px,min(.95vw,1.7vh),15px)}
+  #uslugi .svc{border:0; padding:clamp(12px,2.6vh,34px) clamp(16px,1.8vw,30px); min-height:0}
+  #uslugi .svc:nth-child(1){grid-column:5 / 10; grid-row:1; background:#fff}
+  #uslugi .svc:nth-child(2){grid-column:10 / 13; grid-row:1; background:#efede8}
+  #uslugi .svc:nth-child(3){grid-column:5 / 8; grid-row:2; background:#efede8}
+  #uslugi .svc:nth-child(4){grid-column:8 / 13; grid-row:2; background:#fff}
+  #uslugi .svc:hover{background:#f4f5f6}
+  #uslugi .svc__h{font-size:clamp(16px,min(1.5vw,2.8vh),24px)}
+  #uslugi .svc__p{font-size:clamp(11.5px,1.5vh,14px); min-height:0}
+  #uslugi .svc__tag{min-height:calc(3em + 6px)}
+}

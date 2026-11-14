@@ -1,0 +1,76 @@
+/* ===== SEKCJA OPINIE (karuzela, dane z Google — docelowo z API) ===== */
+.rev{
+  --gold:#C8A56A; --ink:#111;
+  --pad:clamp(20px,4vw,64px);
+  --edge:max(var(--pad), (100vw - 1280px) / 2);
+  --ease:cubic-bezier(.22,.61,.36,1);
+  position:relative; height:100svh; box-sizing:border-box; overflow:clip;
+  padding:50px 0;                                  /* 50 px zapasu u góry i u dołu */
+  background:#f4f2ee; color:var(--ink);
+  display:flex; flex-direction:column;
+  font-family:"Inter",system-ui,sans-serif;
+}
+.rev__head{display:flex; justify-content:space-between; align-items:flex-end; gap:24px 48px; flex-wrap:wrap; padding:0 var(--edge)}
+.rev__eyebrow{display:flex; align-items:center; gap:14px; font-size:10px; font-weight:600; letter-spacing:.32em; text-transform:uppercase}
+.rev__eyebrow::before{content:""; width:34px; height:1px; background:var(--gold)}
+.rev__title{margin-top:clamp(6px,1.2vh,16px); font-weight:800; font-size:clamp(24px, min(3.8vw, 6.4vh), 64px); line-height:1; letter-spacing:-0.04em; text-transform:uppercase}
+
+/* ocena zbiorcza */
+.rev__score{display:flex; align-items:center; gap:clamp(12px,1.4vw,22px)}
+.rev__num{font-weight:800; font-size:clamp(34px, 8vh, 80px); line-height:.9; letter-spacing:-0.05em}
+.rev__meta{display:flex; flex-direction:column; gap:4px}
+.rev__stars{color:var(--gold); font-size:clamp(14px,2vh,18px); letter-spacing:.14em}
+.rev__src{font-size:10px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:rgba(17,17,17,.7)}
+.rev__link{font-size:10px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--ink); text-decoration:none; border-bottom:1px solid var(--gold); padding-bottom:2px; align-self:flex-start}
+.rev__link:hover{color:var(--gold)}
+
+/* karuzela */
+.rev__stage{flex:1; min-height:0; display:flex; align-items:center; margin-top:clamp(10px,2.6vh,34px)}
+.rev__track{
+  display:flex; gap:0; margin:0 var(--edge); width:calc(100% - 2 * var(--edge));   /* tor = szerokość treści, więc widać dokładnie 3 pełne opinie, bez ściętej czwartej */
+  overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth; scrollbar-width:none;
+  padding:0;
+  align-items:stretch;
+}
+.rev__track::-webkit-scrollbar{display:none}
+.rev__card{
+  flex:0 0 calc(100% / 3 + 1px);
+  scroll-snap-align:start;
+  position:relative; background:#fff; border:1px solid rgba(17,17,17,.14); margin-left:-1px;
+  padding:clamp(16px,3.4vh,40px) clamp(18px,1.8vw,32px);
+  min-height:clamp(170px, 36vh, 420px);
+  display:flex; flex-direction:column;
+  transition:background .5s var(--ease);
+}
+.rev__card:first-child{margin-left:0}
+.rev__card:hover{background:#fbfaf8}
+.rev__card::before{content:"“"; position:absolute; right:clamp(14px,1.6vw,26px); top:clamp(4px,1vh,12px); font-weight:800; font-size:clamp(50px,9vh,96px); line-height:1; color:var(--gold); opacity:.9}
+.rev__cstars{color:var(--gold); font-size:clamp(12px,1.7vh,15px); letter-spacing:.14em}
+.rev__text{margin-top:clamp(10px,2vh,24px); font-size:clamp(12.5px,min(1.05vw,1.9vh),16px); font-weight:300; line-height:1.65; color:rgba(17,17,17,.82)}
+.rev__who{display:flex; align-items:center; gap:14px; margin-top:auto; padding-top:clamp(12px,2.4vh,28px); border-top:1px solid rgba(17,17,17,.12)}
+.rev__avatar{width:clamp(34px,5vh,46px); height:clamp(34px,5vh,46px); flex:none; display:grid; place-items:center; background:var(--ink); color:#fff; font-size:12px; font-weight:800; letter-spacing:.04em}
+.rev__name{font-size:clamp(13px,1.9vh,15px); font-weight:700; letter-spacing:-0.01em}
+.rev__time{margin-top:2px; font-size:10px; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:rgba(17,17,17,.55)}
+
+/* sterowanie */
+.rev__ctrl{display:flex; align-items:center; gap:clamp(14px,2vw,28px); padding:0 var(--edge); margin-top:clamp(10px,2.4vh,30px)}
+.rev__btns{display:flex; gap:0}
+.rev__btn{width:clamp(38px,5.4vh,48px); height:clamp(38px,5.4vh,48px); display:grid; place-items:center; background:transparent; color:var(--ink); border:1px solid var(--ink); cursor:pointer; font-size:16px; transition:background .3s var(--ease), color .3s var(--ease)}
+.rev__btn + .rev__btn{margin-left:-1px}
+.rev__btn:hover:not(:disabled){background:var(--ink); color:#fff}
+.rev__btn:disabled{opacity:.3; cursor:default}
+.rev__bar{flex:1; height:1px; background:rgba(17,17,17,.2); position:relative}
+.rev__fill{position:absolute; left:0; top:-0.5px; height:2px; background:var(--gold); width:20%; transition:left .5s var(--ease), width .5s var(--ease)}
+.rev__count{font-size:11px; font-weight:600; letter-spacing:.24em; min-width:5.5em; text-align:right}
+
+/* animacja wejścia */
+.js .rev__card.reveal{opacity:1; transform:none; clip-path:inset(100% 0 0 0); transition:clip-path .95s cubic-bezier(.33,.9,.4,1), background .5s var(--ease); will-change:clip-path}
+.js .rev__card.reveal.in{clip-path:inset(-2px 0 0 0)}
+@media (prefers-reduced-motion:reduce){.js .rev__card.reveal{clip-path:none; transition:none}}
+
+@media (max-width:1100px){ .rev__card{flex-basis:calc(100% / 2 + 1px)} }
+@media (max-width:700px){
+  .rev{height:auto; padding:56px 0}
+  .rev__card{flex-basis:100%; min-height:0}
+  .rev__stage{margin-top:24px}
+}

@@ -1,0 +1,62 @@
+/* ===== GRAFIKI W TLE (wektorowe, czarno-białe) ===== */
+/* Proces: rzut mieszkania jako rysunek techniczny, wygaszany ku lewej stronie */
+.process > *:not(.process__bg){position:relative; z-index:1}
+.process__bg{
+  position:absolute; z-index:0; right:-3%; top:50%; transform:translateY(-50%);
+  width:min(62%, 130vh); height:auto; color:#111; opacity:.075; pointer-events:none;
+  -webkit-mask-image:linear-gradient(to right, transparent 20%, #000 55%); mask-image:linear-gradient(to right, transparent 20%, #000 55%);
+}
+.process__bg *{vector-effect:non-scaling-stroke}
+
+/* Opinie: kontur panoramy Warszawy wzdłuż dolnej krawędzi sekcji */
+.rev > *:not(.rev__sky){position:relative; z-index:1}
+.rev__sky{
+  position:absolute; z-index:0; left:0; right:0; bottom:0; width:100%; height:clamp(90px, 19vh, 230px);
+  color:#111; opacity:.2; pointer-events:none;
+}
+.rev__sky *{vector-effect:non-scaling-stroke}
+
+@media (max-width:900px){ .process__bg{display:none} }
+
+/* rzut wyraźniejszy, ale nadal subtelny; tekst kroków czytelniejszy (halo w kolorze tła + wyższy kontrast) */
+.process__bg{opacity:.11}
+.pa__body .p-h,.pa__body .p-p{text-shadow:0 0 5px #f4f2ee, 0 0 10px #f4f2ee, 0 0 16px #f4f2ee}
+.pa__body .p-p{color:rgba(17,17,17,.85); font-weight:400}
+
+/* rzut w stylu rysunku architektonicznego: osie konstrukcyjne, łańcuchy wymiarowe, numery pomieszczeń, złote wypełnienia ścian; lekka perspektywa */
+.process__bg{opacity:1; color:rgba(17,17,17,.16); font-family:"Inter",sans-serif;
+  transform:translateY(-50%) perspective(1700px) rotateX(16deg) rotateZ(-4deg); transform-origin:60% 50%}
+
+/* rzut w prawym górnym rogu sekcji, wyraźna perspektywa jak leżący arkusz, wygaszanie ku lewemu dołowi */
+.process__bg{
+  top:-9%; right:-9%; bottom:auto; left:auto; width:min(74%, 160vh); height:auto;
+  transform:perspective(1600px) rotateX(26deg) rotateY(-16deg) rotateZ(-9deg); transform-origin:100% 0;
+  color:rgba(17,17,17,.2);
+  -webkit-mask-image:linear-gradient(to bottom left, #000 35%, transparent 82%); mask-image:linear-gradient(to bottom left, #000 35%, transparent 82%);
+}
+.process__lead{text-shadow:0 0 6px #f4f2ee, 0 0 12px #f4f2ee, 0 0 18px #f4f2ee}
+
+/* korekta: mniejszy, mniej zniekształcony i wyraźniejszy rzut, tak żeby widać było większą część rysunku */
+.process__bg{
+  top:-4%; right:-4%; width:min(60%, 128vh);
+  transform:perspective(1800px) rotateX(20deg) rotateY(-9deg) rotateZ(-6deg);
+  color:rgba(17,17,17,.3);
+  -webkit-mask-image:linear-gradient(to bottom left, #000 40%, transparent 88%); mask-image:linear-gradient(to bottom left, #000 40%, transparent 88%);
+}
+
+/* delikatniejszy rysunek: białe linie (wytłoczenie na jasnym tle, z bardzo subtelnym cieniem) i inny kąt */
+.process__bg{
+  color:#fff;
+  filter:drop-shadow(0 1px 0 rgba(17,17,17,.13)) drop-shadow(0 0 1px rgba(17,17,17,.10));
+  transform:perspective(1800px) rotateX(30deg) rotateY(14deg) rotateZ(5deg); transform-origin:100% 0;
+  top:-2%; right:-6%;
+  -webkit-mask-image:linear-gradient(to bottom left, #000 42%, transparent 90%); mask-image:linear-gradient(to bottom left, #000 42%, transparent 90%);
+}
+.process__bg{width:min(54%, 118vh); transform:perspective(1800px) rotateX(24deg) rotateY(9deg) rotateZ(4deg); top:0; right:-2%}
+
+/* rysunek ułożony równolegle do krawędzi sekcji (bez obrotu i perspektywy) */
+.process__bg{transform:none; top:2%; right:-2%; width:min(54%, 118vh)}
+
+/* panorama pod kontrolkami karuzeli: sekcja rezerwuje dla niej miejsce na dole, więc nic na siebie nie nachodzi */
+.rev{--sky-h:min(10.6vw, 210px); padding-bottom:calc(var(--sky-h) + 14px)}
+.rev__sky{height:var(--sky-h); width:100%; opacity:.26}

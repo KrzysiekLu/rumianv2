@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rumianowski — Nieruchomości premium w Warszawie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/warszawa.webp">
+<link rel="preload" as="image" href="img/varso.webp?v=4">
+<link rel="stylesheet" href="hero.css?v=40">
+<link rel="stylesheet" href="offers.css?v=17">
+<link rel="stylesheet" href="services.css?v=32">
+<link rel="stylesheet" href="nav.css?v=3">
+<link rel="stylesheet" href="process.css?v=7">
+<link rel="stylesheet" href="about.css?v=7">
+<link rel="stylesheet" href="reviews.css?v=3">
+<link rel="stylesheet" href="contact.css?v=6">
+<link rel="stylesheet" href="quick.css?v=4">
+<link rel="stylesheet" href="art.css?v=16">
+</head>
+<body>
+
+<!-- Filtr: biały napis minus jego zmniejszona kopia = czysty obrys z zewnątrz.
+     Zmień radius, żeby zmienić grubość linii. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="title-outline" x="-5%" y="-5%" width="110%" height="110%">
+    <feMorphology in="SourceAlpha" operator="erode" radius="1" result="inner"/>
+    <feComposite in="SourceGraphic" in2="inner" operator="out"/>
+  </filter>
+</svg>
+
+
+<header class="nav" id="top">
+  <a class="nav__brand" href="#top">Rumianowski</a>
+  <nav class="nav__links" aria-label="Główne">
+    <a href="#oferty">Oferty</a>
+    <a href="#o-mnie">O mnie</a>
+    <a href="#uslugi">Usługi</a>
+    <a href="#kontakt">Kontakt</a>
+  </nav>
+</header>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="num-outline" x="-5%" y="-5%" width="110%" height="110%">
+    <feMorphology in="SourceAlpha" operator="erode" radius="1" result="inner"/>
+    <feComposite in="SourceGraphic" in2="inner" operator="out"/>
+  </filter>
+</svg>
+
+<section class="hero">
+  <!-- Scena: zawsze ma proporcje zdjęcia i działa jak "cover",
+       więc napis i wieżowiec zawsze się pokrywają.
+       Warstwy: tło → napis → wieżowiec (przed literami) → obrys liter na wieżowcu -->
+  <div class="hero__stage">
+    <img class="hero__bg" src="img/warszawa.webp" alt="Panorama centrum Warszawy z wieżowcem Varso" width="2576" height="1472">
+    <h1 class="hero__title">Rumianowski</h1>
+    <img class="hero__tower" src="img/varso.webp?v=4" alt="" width="2576" height="1472">
+    <span class="hero__title hero__title--over" aria-hidden="true">Rumianowski</span>
+  </div>
+  <div class="hero__shade"></div>
+
+  <div class="hero__ui">
+
+    <div class="hero__mid">
+      <p class="hero__sub">Nieruchomości premium</p>
+      <p class="hero__loc">Warszawa i okolice</p>
+
+      <div class="hero__actions">
+        <a class="hero__btn hero__btn--primary" href="#oferty">Zobacz oferty <span class="hero__arrow"><svg class="arr arr--d" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
+        <a class="hero__btn hero__btn--ghost" href="#kontakt">Umów konsultację</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="services" id="uslugi">
+  <div class="services__in">
+    <div class="services__head">
+      <div class="services__intro">
+        <p class="services__eyebrow reveal">Specjalizacja</p>
+        <h2 class="services__title reveal d1">Zakres usług <br>i wsparcia</h2>
+        <p class="services__lead reveal d2">Indywidualne podejście do każdego klienta. Bez szablonów, z osobną strategią dla każdej transakcji.</p>
+      </div>
+    </div>
+
+    <div class="services__grid">
+      <article class="svc">
+        <div class="svc__top"><div class="svc__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v10.5h13V10"/><path d="M10 20.5v-5.5h4v5.5"/><path d="M16.5 6V4h2v3.8"/></svg></div><span class="svc__num">01</span></div>
+        <h3 class="svc__h">Sprzedaż mieszkań</h3>
+        <p class="svc__p">Przygotowanie nieruchomości, sesja fotograficzna, celowany marketing i twarde negocjacje ceny.</p>
+        <div class="svc__tag-wrap"><p class="svc__tag">Strategia szyta na miarę</p></div>
+      </article>
+      <article class="svc">
+        <div class="svc__top"><div class="svc__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m8.5 11 2 2 3.5-4M16 16l4.5 4.5"/></svg></div><span class="svc__num">02</span></div>
+        <h3 class="svc__h">Zakup nieruchomości</h3>
+        <p class="svc__p">Poszukiwanie lokali według Twoich kryteriów, weryfikacja ksiąg wieczystych, stanu technicznego i bezpieczne przejście przez notariat.</p>
+        <div class="svc__tag-wrap"><p class="svc__tag">Weryfikacja stanu prawnego</p></div>
+      </article>
+      <article class="svc">
+        <div class="svc__top"><div class="svc__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 4v16h16"/><path d="M8 16v-4M12 16V8M16 16v-6"/></svg></div><span class="svc__num">03</span></div>
+        <h3 class="svc__h">Wycena i analiza</h3>
+        <p class="svc__p">Realne ceny transakcyjne z Rejestru Cen i Wartości Nieruchomości, a nie zawyżone kwoty ofertowe z portali.</p>
+        <div class="svc__tag-wrap"><p class="svc__tag">Oparta na danych rynkowych</p></div>
+      </article>
+      <article class="svc">
+        <div class="svc__top"><div class="svc__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5" y="3.5" width="14" height="17"/><path d="M9 8h2M13 8h2M9 12h2M13 12h2M10 20.5v-4h4v4"/></svg></div><span class="svc__num">04</span></div>
+        <h3 class="svc__h">Wynajem lokali</h3>
+        <p class="svc__p">Selekcja najemców, bezpieczne umowy (najem okazjonalny/instytucjonalny) i protokoły zdawczo-odbiorcze.</p>
+        <div class="svc__tag-wrap"><p class="svc__tag">Zabezpieczenie interesów właściciela</p></div>
+      </article>
+    </div>
+
+    <div class="services__foot reveal">
+      <a class="services__cta" href="#oferty">Zobacz oferty <span class="services__arrow"><svg class="arr arr--d" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<section class="services services--alt" id="zakres">
+  <div class="services__in">
+    <div class="services__head">
+      <div class="services__intro">
+        <p class="services__eyebrow reveal">Specjalizacja</p>
+        <h2 class="services__title reveal d1">Zakres usług <br>i wsparcia</h2>
+        <p class="services__lead reveal d2">Indywidualne podejście do każdego klienta. Bez szablonów, z osobną strategią dla każdej transakcji.</p>
+      </div>
+    </div>
+
+    <div class="services__grid">
+      <article class="svc">
+        <h3 class="svc__h">Sprzedaż mieszkań</h3>
+        <div class="svc__more"><div class="svc__more-in">
+        <p class="svc__p">Przygotowanie nieruchomości, sesja fotograficzna, celowany marketing i twarde negocjacje ceny.</p>
+        <div class="svc__tag-wrap"><p class="svc__tag">Strategia szyta na miarę</p></div>
+        </div></div>
+      </article>
+      <article class="svc">
+        <h3 class="svc__h">Zakup nieruchomości</h3>
+        <div class="svc__more"><div class="svc__more-in">
+        <p class="svc__p">Poszukiwanie lokali według Twoich kryteriów, weryfikacja ksiąg wieczystych, stanu technicznego i bezpieczne przejście przez notariat.</p>
+        <div class="svc__tag-wrap"><p class="svc__tag">Weryfikacja stanu prawnego</p></div>
+        </div></div>
+      </article>
+      <article class="svc">
+        <h3 class="svc__h">Wycena i analiza</h3>
+        <div class="svc__more"><div class="svc__more-in">
+        <p class="svc__p">Realne ceny transakcyjne z Rejestru Cen i Wartości Nieruchomości, a nie zawyżone kwoty ofertowe z portali.</p>
+        <div class="svc__tag-wrap"><p class="svc__tag">Oparta na danych rynkowych</p></div>
+        </div></div>
+      </article>
+      <article class="svc">
+        <h3 class="svc__h">Wynajem lokali</h3>
+        <div class="svc__more"><div class="svc__more-in">
+        <p class="svc__p">Selekcja najemców, bezpieczne umowy (najem okazjonalny/instytucjonalny) i protokoły zdawczo-odbiorcze.</p>
+        <div class="svc__tag-wrap"><p class="svc__tag">Zabezpieczenie interesów właściciela</p></div>
+        </div></div>
+      </article>
+    </div>
+
+    <div class="services__foot reveal">
+      <a class="services__cta" href="#oferty">Zobacz oferty <span class="services__arrow"><svg class="arr arr--d" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- PROCES: oś czasu -->
+<section class="process process--a" id="proces-a">
+<svg class="process__bg" viewBox="-70 -70 1100 800" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="square" aria-hidden="true">
+  <path d="M254 66h12v114h-12ZM254 206h12v174h-12ZM634 236h12v64h-12ZM634 370h12v264h-12ZM54 374h212v12h-212ZM374 66h12v74h-12ZM466 66h8v164h-8ZM54 54h24v24h-24ZM922 54h24v24h-24ZM54 622h24v24h-24ZM922 622h24v24h-24ZM444 386h12v60h-12Z" fill="#C8A56A" fill-opacity=".42" stroke="none"/>
+  <path d="M60 -16V690M260 -16V690M380 -16V690M470 -16V690M640 -16V690M940 -16V690M-16 60H970M-16 230H970M-16 380H970M-16 640H970" stroke-width=".7" stroke-dasharray="16 3 2 3"/>
+  <path d="M50 -24a10 10 0 1 0 20 0a10 10 0 1 0 -20 0M250 -24a10 10 0 1 0 20 0a10 10 0 1 0 -20 0M370 -24a10 10 0 1 0 20 0a10 10 0 1 0 -20 0M460 -24a10 10 0 1 0 20 0a10 10 0 1 0 -20 0M630 -24a10 10 0 1 0 20 0a10 10 0 1 0 -20 0M930 -24a10 10 0 1 0 20 0a10 10 0 1 0 -20 0M-34 60a10 10 0 1 0 20 0a10 10 0 1 0 -20 0M-34 230a10 10 0 1 0 20 0a10 10 0 1 0 -20 0M-34 380a10 10 0 1 0 20 0a10 10 0 1 0 -20 0M-34 640a10 10 0 1 0 20 0a10 10 0 1 0 -20 0"/>
+  <path d="M60 54L110 54M60 66L110 66M230 54L520 54M230 66L520 66M600 54L700 54M600 66L700 66M860 54L940 54M860 66L940 66M110 54L110 66M230 54L230 66M520 54L520 66M600 54L600 66M700 54L700 66M860 54L860 66M60 646L300 646M60 634L300 634M360 646L520 646M360 634L520 634M620 646L780 646M620 634L780 634M900 646L940 646M900 634L940 634M300 646L300 634M360 646L360 634M520 646L520 634M620 646L620 634M780 646L780 634M900 646L900 634M946 60L946 110M934 60L934 110M946 200L946 430M934 200L934 430M946 540L946 640M934 540L934 640M946 110L934 110M946 200L934 200M946 430L934 430M946 540L934 540M54 60L54 260M66 60L66 260M54 340L54 450M66 340L66 450M54 560L54 640M66 560L66 640M54 260L66 260M54 340L66 340M54 450L66 450M54 560L66 560M110 54L230 54M110 60L230 60M110 66L230 66M520 54L600 54M520 60L600 60M520 66L600 66M700 54L860 54M700 60L860 60M700 66L860 66M300 646L360 646M300 640L360 640M300 634L360 634M520 646L620 646M520 640L620 640M520 634L620 634M780 646L900 646M780 640L900 640M780 634L900 634M946 110L946 200M940 110L940 200M934 110L934 200M946 430L946 540M940 430L940 540M934 430L934 540M54 260L54 340M60 260L60 340M66 260L66 340M54 450L54 560M60 450L60 560M66 450L66 560M256 66L256 150M264 66L264 150M256 66L264 66M256 150L264 150M256 200L256 380M264 200L264 380M256 200L264 200M256 380L264 380M376 66L376 140M384 66L384 140M376 66L384 66M376 140L384 140M376 190L376 230M384 190L384 230M376 190L384 190M376 230L384 230M466 66L466 230M474 66L474 230M466 66L474 66M466 230L474 230M636 230L636 300M644 230L644 300M636 230L644 230M636 300L644 300M636 370L636 634M644 370L644 634M636 370L644 370M636 634L644 634M256 380L256 450M264 380L264 450M256 380L264 380M256 450L264 450M256 500L256 634M264 500L264 634M256 500L264 500M256 634L264 634M446 380L446 500M454 380L454 500M446 380L454 380M446 500L454 500M446 550L446 634M454 550L454 634M446 550L454 550M446 634L454 634M636 66L636 230M644 66L644 230M636 66L644 66M636 230L644 230M66 226L300 226M66 234L300 234M66 226L66 234M300 226L300 234M350 226L520 226M350 234L520 234M350 226L350 234M520 226L520 234M580 226L640 226M580 234L640 234M580 226L580 234M640 226L640 234M66 376L300 376M66 384L300 384M66 376L66 384M300 376L300 384M350 376L480 376M350 384L480 384M350 376L350 384M480 376L480 384M540 376L640 376M540 384L640 384M540 376L540 384M640 376L640 384M640 396L720 396M640 404L720 404M640 396L640 404M720 396L720 404M860 396L934 396M860 404L934 404M860 396L860 404M934 396L934 404" stroke-width="1.4"/>
+  <path d="M260 150A50 50 0 0 0 200 200M260 200L200 200M380 140A50 50 0 0 0 330 190M380 190L330 190M300 230A50 50 0 0 1 350 280M350 230L350 280M520 230A60 60 0 0 1 580 290M580 230L580 290M300 380A50 50 0 0 0 350 330M350 380L350 330M480 380A60 60 0 0 1 540 440M540 380L540 440M260 450A50 50 0 0 0 200 500M260 500L200 500M450 500A50 50 0 0 1 510 550M450 550L510 550M640 300A70 70 0 0 0 580 370M640 370L580 370M300 634A60 60 0 0 0 360 574M360 634L360 574"/>
+  <path d="M90 80h140v120h-140ZM100 86h50v28h-50ZM160 86h50v28h-50ZM290 80h70v40h-70ZM317 100a8 8 0 1 0 16 0a8 8 0 1 0 -16 0M400 80h50v28h-50ZM410 150h30v60h-30ZM500 70h110v40h-110ZM500 130h110v16h-110ZM700 150h150v56h-150ZM700 150h150v14h-150ZM740 250h90v60h-90ZM670 430h230v36h-230ZM732 540a8 8 0 1 0 16 0a8 8 0 1 0 -16 0M782 540a8 8 0 1 0 16 0a8 8 0 1 0 -16 0M850 500h50v120h-50ZM90 420h100v160h-100ZM100 430h36v60h-36ZM300 520h100v90h-100ZM336 420a14 14 0 1 0 28 0a14 14 0 1 0 -28 0M480 420h120v40h-120ZM560 232V378M568 232V378M576 232V378M584 232V378M592 232V378M600 232V378M608 232V378M616 232V378M624 232V378M556 236h80v140h-80Z" stroke-width=".9"/>
+  <path d="M60 4H940M56 8L64 0M256 8L264 0M376 8L384 0M466 8L474 0M636 8L644 0M936 8L944 0M60 16H940M56 20L64 12M936 20L944 12M60 668H940M56 672L64 664M256 672L264 664M376 672L384 664M466 672L474 664M636 672L644 664M936 672L944 664M4 60V640M0 64L8 56M0 234L8 226M0 384L8 376M0 644L8 636M16 60V640M12 64L20 56M12 644L20 636M958 60V640M954 64L962 56M954 234L962 226M954 384L962 376M954 644L962 636" stroke-width=".8"/>
+  <path d="M152 140a8 8 0 1 0 16 0a8 8 0 1 0 -16 0M312 150a8 8 0 1 0 16 0a8 8 0 1 0 -16 0M417 120a8 8 0 1 0 16 0a8 8 0 1 0 -16 0M542 100a8 8 0 1 0 16 0a8 8 0 1 0 -16 0M422 305a8 8 0 1 0 16 0a8 8 0 1 0 -16 0M782 300a8 8 0 1 0 16 0a8 8 0 1 0 -16 0M152 480a8 8 0 1 0 16 0a8 8 0 1 0 -16 0M342 560a8 8 0 1 0 16 0a8 8 0 1 0 -16 0M537 500a8 8 0 1 0 16 0a8 8 0 1 0 -16 0M782 520a8 8 0 1 0 16 0a8 8 0 1 0 -16 0" stroke-width=".8"/>
+  <text x="60" y="-24" font-size="9" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">1</text><text x="260" y="-24" font-size="9" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">2</text><text x="380" y="-24" font-size="9" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">3</text><text x="470" y="-24" font-size="9" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">4</text><text x="640" y="-24" font-size="9" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">5</text><text x="940" y="-24" font-size="9" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">6</text><text x="-24" y="60" font-size="9" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">A</text><text x="-24" y="230" font-size="9" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">B</text><text x="-24" y="380" font-size="9" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">C</text><text x="-24" y="640" font-size="9" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">D</text><text x="160.0" y="-2" font-size="7" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">4000</text><text x="320.0" y="-2" font-size="7" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">2400</text><text x="425.0" y="-2" font-size="7" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">1800</text><text x="555.0" y="-2" font-size="7" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">3400</text><text x="790.0" y="-2" font-size="7" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">6000</text><text x="500.0" y="10" font-size="7" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">17600</text><text x="160.0" y="675" font-size="7" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">4000</text><text x="320.0" y="675" font-size="7" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">2400</text><text x="425.0" y="675" font-size="7" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">1800</text><text x="555.0" y="675" font-size="7" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">3400</text><text x="790.0" y="675" font-size="7" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">6000</text><text x="-2" y="145.0" font-size="7" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none" transform="rotate(-90 -2 145.0)">3400</text><text x="-2" y="305.0" font-size="7" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none" transform="rotate(-90 -2 305.0)">3000</text><text x="-2" y="510.0" font-size="7" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none" transform="rotate(-90 -2 510.0)">5200</text><text x="10" y="350.0" font-size="7" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none" transform="rotate(-90 10 350.0)">11600</text><text x="966" y="145.0" font-size="7" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none" transform="rotate(-90 966 145.0)">3400</text><text x="966" y="305.0" font-size="7" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none" transform="rotate(-90 966 305.0)">3000</text><text x="966" y="510.0" font-size="7" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none" transform="rotate(-90 966 510.0)">5200</text><text x="160" y="140" font-size="7" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">1</text><text x="160" y="156" font-size="6" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">Sp. 14,2</text><text x="320" y="150" font-size="7" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">2</text><text x="320" y="166" font-size="6" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">4,6</text><text x="425" y="120" font-size="7" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">3</text><text x="425" y="136" font-size="6" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">1,9</text><text x="550" y="100" font-size="7" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">4</text><text x="550" y="116" font-size="6" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">8,4</text><text x="430" y="305" font-size="7" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">5</text><text x="430" y="321" font-size="6" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">Kor. 12,8</text><text x="790" y="300" font-size="7" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">6</text><text x="790" y="316" font-size="6" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">Salon 38,4</text><text x="160" y="480" font-size="7" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">7</text><text x="160" y="496" font-size="6" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">Sp. 16,0</text><text x="350" y="560" font-size="7" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">8</text><text x="350" y="576" font-size="6" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">Gab. 9,5</text><text x="545" y="500" font-size="7" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">9</text><text x="545" y="516" font-size="6" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">4,8</text><text x="790" y="520" font-size="7" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">10</text><text x="790" y="536" font-size="6" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">Kuch. 14,9</text><text x="300" y="-52" font-size="7" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">+0,000</text><text x="660" y="-52" font-size="7" text-anchor="middle" dominant-baseline="central" fill="currentColor" stroke="none">+0,150</text>
+</svg>
+    <div class="process__head">
+      <div>
+        <p class="process__eyebrow">Przejrzysty proces</p>
+        <h2 class="process__title">Jak wygląda współpraca</h2>
+      </div>
+      <p class="process__lead">Krok po kroku do udanej transakcji. Jasne zasady i brak nieprzyjemnych niespodzianek.</p>
+    </div>
+    <div class="pa__track">
+      <article class="pa__step">
+        <div class="pa__node"></div>
+        <div class="pa__body"><div class="p-num">01</div><h3 class="p-h">Rozmowa i analiza</h3><p class="p-p">Spotkanie lub telefon. Ustalamy priorytety, oczekiwania finansowe, ramy czasowe i stan prawny lokalu.</p></div>
+      </article>
+      <article class="pa__step">
+        <div class="pa__node"></div>
+        <div class="pa__body"><div class="p-num">02</div><h3 class="p-h">Strategia &amp; audyt</h3><p class="p-p">Sprawdzamy księgi wieczyste, tworzymy plan marketingowy, robimy sesję zdjęciową i ustalamy właściwą cenę rynkową.</p></div>
+      </article>
+      <article class="pa__step">
+        <div class="pa__node"></div>
+        <div class="pa__body"><div class="p-num">03</div><h3 class="p-h">Prezentacje &amp; negocjacje</h3><p class="p-p">Prowadzę każde spotkanie osobiście, weryfikuję zdolność finansową kupujących i negocjuję najkorzystniejszą cenę.</p></div>
+      </article>
+      <article class="pa__step">
+        <div class="pa__node"></div>
+        <div class="pa__body"><div class="p-num">04</div><h3 class="p-h">Finalizacja u notariusza</h3><p class="p-p">Przygotowuję dokumenty z kancelarią notarialną i asystuję przy podpisaniu aktu oraz przekazaniu kluczy.</p></div>
+      </article>
+    </div>
+</section>
+
+
+<!-- O DORADCY -->
+<section class="adv adv--a" id="o-mnie">
+  <div class="adv__main">
+    <div>
+        <p class="adv__eyebrow reveal">O doradcy</p>
+        <h2 class="adv__title reveal d1">Spokój i bezpieczeństwo Twojego kapitału.</h2>
+        <p class="adv__lead reveal d2">Na rynku warszawskim działam od ponad dekady. Łączę kompetencje analityczne z doświadczeniem negocjacyjnym. Prowadzę ograniczoną liczbę nieruchomości jednocześnie, dzięki czemu każdy klient ma mój bezpośredni numer i pełną uwagę.</p>
+    </div>
+    <div class="adv__stats">
+        <div class="adv__stat reveal"><div class="adv__stat-l">Doświadczenie</div><div class="adv__stat-v">10+ lat</div><div class="adv__stat-s">Rynek warszawski</div></div>
+        <div class="adv__stat reveal d1"><div class="adv__stat-l">Ubezpieczenie</div><div class="adv__stat-v">Polisa OC</div><div class="adv__stat-s">Zgodnie z wymogami ustawy</div></div>
+        <div class="adv__stat reveal d2"><div class="adv__stat-l">Podejście</div><div class="adv__stat-v">1 na 1</div><div class="adv__stat-s">Bezpośredni kontakt z doradcą</div></div>
+    </div>
+    <a class="adv__cta reveal d3" href="#kontakt">Porozmawiajmy o Twojej nieruchomości <span><svg class="arr arr--d" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
+  </div>
+  <aside class="adv__photo reveal" aria-label="Marcin Rumianowski">
+    <img class="adv__img" src="img/doradca.jpg" alt="Marcin Rumianowski">
+    <div class="adv__shade" aria-hidden="true"></div>
+    <div class="adv__areas reveal d2"><div class="adv__areas-l">Główny rejon działania</div><div class="adv__tags"><span class="adv__tag">Mokotów</span><span class="adv__tag">Śródmieście &amp; Powiśle</span><span class="adv__tag">Żoliborz</span><span class="adv__tag">Wilanów</span><span class="adv__tag">Wola</span><span class="adv__tag">Ochota</span></div></div>
+    <div class="adv__name"><b>Marcin Rumianowski</b><span>Doradca transakcyjny Warszawa</span></div>
+  </aside>
+</section>
+
+
+<section class="rev" id="opinie">
+<svg class="rev__sky" viewBox="0 0 1600 170" preserveAspectRatio="xMidYMax slice" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linejoin="miter" aria-hidden="true">
+  <g transform="translate(0 169) scale(1 .77) translate(0 -219)">
+    <g transform="translate(-230 0)">
+      <path d="M250 219V86L298 74V219M298 219V108L342 98V219M342 219V150H420V219"/>
+      <path d="M250 110H298M250 134H298M250 158H298M250 182H298M298 130H342M298 154H342M298 178H342M262 80V219M274 78V219M310 104V219M322 102V219"/>
+      <path d="M342 168H420M360 150V219M380 150V219M400 150V219"/>
+    </g>
+    <g transform="translate(-414 0)">
+      <path d="M664 219V138H704V219M768 219V120H812V219"/>
+      <path d="M704 219V60H768V219M704 60H768M712 60V46H760V60M736 46V2M726 12H746M729 22H743M720 66V219M736 66V219M752 66V219"/>
+      <path d="M704 80H768M704 100H768M704 120H768M704 140H768M704 160H768M704 180H768M704 200H768"/>
+    </g>
+    <g transform="translate(-30 0)">
+      <path d="M440 219V150H456V124H472V104H488V219"/>
+      <path d="M456 150V219M472 124V219"/>
+    </g>
+    <g transform="translate(-8 0)">
+      <path d="M532 219V122Q532 104 552 100L584 98V219"/>
+      <path d="M532 134H584M532 148H584M532 162H584M532 176H584M532 190H584M532 204H584"/>
+    </g>
+    <g transform="translate(-310 0)">
+      <path d="M936 219V116H992V219M944 116V104H984V116M956 104V94H972V104M964 94V84"/>
+      <path d="M936 134H992M936 152H992M936 170H992M936 188H992M936 206H992"/>
+    </g>
+    <g transform="translate(-96 0)">
+      <path d="M826 219V104C838 80 866 56 904 44C906 100 906 160 906 219"/>
+      <path d="M846 219V108M866 219V84M886 219V62M826 140H906M826 180H906"/>
+    </g>
+    <g transform="translate(-270 0)">
+      <path d="M1093.7 219.0L1093.7 173.6L1134.8 173.6L1134.8 190.4L1175.1 190.4L1175.1 148.4L1189.4 148.4L1189.4 98.9L1187.7 98.9L1187.7 93.8L1201.2 93.8L1201.2 67.0L1203.7 65.3L1207.1 65.3L1207.5 56.9L1209.2 36.3L1212.5 56.9L1212.9 65.3L1216.3 65.3L1218.8 67.0L1218.8 93.8L1232.3 93.8L1232.3 98.9L1230.6 98.9L1230.6 148.4L1244.9 148.4L1244.9 190.4L1285.2 190.4L1285.2 173.6L1326.3 173.6L1326.3 219.0ZM1189.4 98.9H1230.6M1201.2 67.8H1218.8M1201.2 87.1H1218.8M1212.5 77.0A3.4 3.4 0 1 0 1205.8 77.0A3.4 3.4 0 1 0 1212.5 77.0M1197.0 102.2V145.9M1203.7 102.2V145.9M1216.3 102.2V145.9M1223.0 102.2V145.9M1191.1 114.0H1228.9M1191.1 126.6H1228.9M1191.1 139.2H1228.9M1175.1 160.2H1189.4M1175.1 172.8H1189.4M1230.6 160.2H1244.9M1230.6 172.8H1244.9M1185.2 179.5H1234.8M1198.7 181.2V219.0M1221.3 181.2V219.0M1134.8 196.3H1175.1M1244.9 196.3H1285.2M1093.7 178.7H1134.8M1099.5 178.7V217.3M1107.1 178.7V217.3M1114.7 178.7V217.3M1122.2 178.7V217.3M1129.8 178.7V217.3M1285.2 178.7H1326.3M1291.1 178.7V217.3M1298.6 178.7V217.3M1306.2 178.7V217.3M1313.7 178.7V217.3M1321.3 178.7V217.3"/>
+    </g>
+    <g transform="translate(-270 0)">
+      <path d="M1362 219V150H1392V122H1420V219M1392 150V219"/>
+    </g>
+    <g transform="translate(-270 0)">
+      <path d="M1452 219V108L1470 96H1500V219M1470 96V219M1452 130H1500M1452 156H1500M1452 182H1500"/>
+    </g>
+    <g transform="translate(-270 0)">
+      <path d="M1522 219V132H1556V219M1534 132V112H1546V132M1540 112V92M1522 160H1556M1522 188H1556"/>
+    </g>
+    <g>
+      <path d="M1296 219V128L1346 108V219M1306 140H1346M1306 164H1346M1306 188H1346M1318 120V219M1332 114V219"/>
+      <path d="M1380 219V138H1430V219M1380 160H1430M1380 182H1430M1380 204H1430M1400 138V219"/>
+      <path d="M1462 219V160H1500V219M1500 190H1540V219"/>
+    </g>
+    <path d="M0 219V180L0 178.3Q17.0 161.8 34 178.6L34 181.4Q51.0 167.5 68 184.0L68 181.1Q86.0 167.0 104 183.4L104 182.3Q121.0 173.4 138 176.7L138 178.4Q159.0 164.5 180 180.1L180 177.5Q197.0 163.4 214 181.9L214 175.2Q224.0 166.6 234 182.8L234 177.2Q247.5 161.4 261 179.5L261 174.3Q280.0 161.1 299 175.7L299 182.1Q316.5 173.2 334 175.0L334 171.6Q350.5 153.6 367 172.6L367 178.5Q388.0 162.9 409 175.2L409 179.7Q419.0 164.0 429 176.0L429 176.2Q443.5 158.6 458 171.1L458 177.4Q468.0 160.2 478 178.7L478 169.4Q494.0 157.5 510 178.0L510 176.7Q530.0 162.0 550 174.7L550 174.7Q564.5 157.1 579 170.0L579 176.2Q590.5 161.2 602 177.1L602 169.2Q619.0 159.5 636 171.1L636 171.6Q653.0 153.7 670 168.4L670 169.7Q686.5 160.5 703 171.4L703 175.6Q716.0 158.9 729 165.4L729 172.1Q748.0 155.3 767 176.0L767 168.1Q783.0 154.1 799 178.6L799 174.5Q809.5 164.3 820 186.0L820 185.3Q839.5 174.3 859 195.8L859 194.5Q870.0 180.1 881 201.0L881 197.4Q896.5 184.9 912 198.1L912 199.4Q929.5 190.0 947 208.3L947 210.7Q967.0 193.6 987 194.9L987 195.8Q1000.5 186.2 1014 190.5L1014 194.8Q1032.5 177.3 1051 179.2L1051 187.2Q1070.5 178.8 1090 177.5L1090 168.9Q1108.0 158.5 1126 162.6L1126 165.4Q1140.0 148.4 1154 163.3L1154 166.5Q1172.0 151.3 1190 167.0L1190 162.9Q1203.5 148.3 1217 161.1L1217 164.4Q1228.0 147.2 1239 164.8L1239 166.2Q1249.0 154.1 1259 164.1L1259 164.8Q1269.5 153.1 1280 160.5L1280 165.3Q1292.0 155.9 1304 161.3L1304 159.2Q1319.0 144.3 1334 159.5L1334 159.4Q1346.0 142.2 1358 160.2L1358 157.9Q1373.5 140.3 1389 164.2L1389 163.7Q1409.0 155.0 1429 160.7L1429 153.8Q1441.0 145.0 1453 157.9L1453 154.4Q1463.5 139.0 1474 156.0L1474 159.5Q1489.0 144.7 1504 153.6L1504 153.1Q1520.5 144.8 1537 157.0L1537 155.8Q1547.0 144.0 1557 155.9L1557 161.0Q1576.5 152.1 1596 159.9L1596 152.3Q1598.0 137.0 1600 157.1V219Z" fill="#f4f2ee"/>
+    <path d="M0 219.5H1600"/>
+  </g>
+</svg>
+  <div class="rev__head">
+    <div>
+      <p class="rev__eyebrow reveal">Opinie klientów</p>
+      <h2 class="rev__title reveal d1">Zaufali mi klienci</h2>
+    </div>
+    <div class="rev__score reveal d2">
+      <div class="rev__num" id="rev-avg">5,0</div>
+      <div class="rev__meta">
+        <div class="rev__stars" id="rev-stars" aria-hidden="true">★★★★★</div>
+        <div class="rev__src" id="rev-src">Opinie z Google</div>
+        <!-- TODO: wstaw link do wizytówki Google (Google Business Profile) -->
+        <a class="rev__link" href="#" id="rev-link" target="_blank" rel="noopener">Zobacz w Google</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="rev__stage">
+    <div class="rev__track" id="rev-track" tabindex="0" aria-label="Opinie klientów"></div>
+  </div>
+
+  <div class="rev__ctrl">
+    <div class="rev__btns">
+      <button class="rev__btn" id="rev-prev" type="button" aria-label="Poprzednie opinie">←</button>
+      <button class="rev__btn" id="rev-next" type="button" aria-label="Następne opinie">→</button>
+    </div>
+    <div class="rev__bar"><div class="rev__fill" id="rev-fill"></div></div>
+    <div class="rev__count" id="rev-count">01 / 01</div>
+  </div>
+</section>
+
+<script>
+// ===== OPINIE: karuzela =====
+// PRZYKŁADOWE dane (placeholder). Docelowo podmienić na odpowiedź z API Google (Places / Business Profile):
+//   window.renderReviews(listaOpinii, { average, total, url })
+// Kształt jednej opinii: { author, rating (1-5), text, time }
+(function(){
+  var SAMPLE=[
+    {author:'Anna K.', rating:5, time:'2 tygodnie temu', text:'Sprzedaż mieszkania na Mokotowie przebiegła sprawnie i bez stresu. Świetnie przygotowana oferta, profesjonalne zdjęcia i realna wycena. Mieszkanie sprzedane w trzy tygodnie.'},
+    {author:'Tomasz W.', rating:5, time:'miesiąc temu', text:'Pomógł mi znaleźć mieszkanie inwestycyjne. Sprawdził księgę wieczystą i stan prawny, wskazał ryzyka, o których nie miałem pojęcia. Pełen profesjonalizm.'},
+    {author:'Katarzyna i Michał', rating:5, time:'miesiąc temu', text:'Bezpośredni kontakt, odpowiedzi w ciągu godziny i spokój aż do aktu notarialnego. Polecamy każdemu, kto ceni swój czas.'},
+    {author:'Piotr S.', rating:5, time:'2 miesiące temu', text:'Negocjacje poprowadzone twardo, ale z klasą. Uzyskaliśmy cenę wyższą, niż zakładałem na początku.'},
+    {author:'Marta L.', rating:5, time:'2 miesiące temu', text:'Wynajem lokalu bez niespodzianek: rzetelna selekcja najemców, jasna umowa i dokładny protokół zdawczo-odbiorczy.'},
+    {author:'Jakub R.', rating:4, time:'3 miesiące temu', text:'Transparentny proces krok po kroku. Przez cały czas wiedziałem, co dzieje się na każdym etapie transakcji.'},
+    {author:'Ewa D.', rating:5, time:'4 miesiące temu', text:'Znajomość Warszawy widać od pierwszej rozmowy. Wycena oparta na danych transakcyjnych, a nie na życzeniowych ofertach z portali.'},
+    {author:'Robert N.', rating:5, time:'5 miesięcy temu', text:'Zero presji, dużo konkretów. Sprzedaż domu w Wilanowie została zamknięta bez żadnych problemów.'}
+  ];
+  var track=document.getElementById('rev-track'), prev=document.getElementById('rev-prev'), next=document.getElementById('rev-next');
+  var fill=document.getElementById('rev-fill'), count=document.getElementById('rev-count');
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function stars(n){var r=Math.max(0,Math.min(5,Math.round(n)));return '★★★★★'.slice(0,r)+'☆☆☆☆☆'.slice(0,5-r)}
+  function initials(n){return String(n).split(/\s+/).filter(function(w){return /^[A-Za-zĄąĆćĘęŁłŃńÓóŚśŹźŻż]/.test(w)}).slice(0,2).map(function(w){return w[0].toUpperCase()}).join('')}
+  function pad(n){return (n<10?'0':'')+n}
+  function plural(n){return n===1?'opinia':((n%10>=2&&n%10<=4&&(n%100<10||n%100>=20))?'opinie':'opinii')}
+
+  window.renderReviews=function(list, meta){
+    meta=meta||{};
+    var avg=meta.average!=null?meta.average:(list.reduce(function(a,r){return a+r.rating},0)/Math.max(1,list.length));
+    var total=meta.total!=null?meta.total:list.length;
+    document.getElementById('rev-avg').textContent=avg.toFixed(1).replace('.',',');
+    document.getElementById('rev-stars').textContent=stars(avg);
+    document.getElementById('rev-src').textContent='Google · '+total+' '+plural(total);
+    if(meta.url) document.getElementById('rev-link').href=meta.url;
+    track.innerHTML=list.map(function(r,i){
+      return '<article class="rev__card reveal" style="transition-delay:'+(i*0.07).toFixed(2)+'s,0s">'+
+        '<div class="rev__cstars" aria-label="'+r.rating+' na 5">'+stars(r.rating)+'</div>'+
+        '<p class="rev__text">'+esc(r.text)+'</p>'+
+        '<div class="rev__who"><div class="rev__avatar">'+esc(initials(r.author))+'</div><div><div class="rev__name">'+esc(r.author)+'</div><div class="rev__time">'+esc(r.time||'')+'</div></div></div>'+
+      '</article>';
+    }).join('');
+    shown=false; update(); revealCheck();
+  };
+
+  function stepW(){var c=track.querySelector('.rev__card'); return c?c.getBoundingClientRect().width:track.clientWidth}
+  function perView(){var cs=getComputedStyle(track); var inner=track.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight); return Math.max(1,Math.round(inner/Math.max(1,stepW())))}
+  function update(){
+    var n=track.querySelectorAll('.rev__card').length; if(!n) return;
+    var max=track.scrollWidth-track.clientWidth, x=track.scrollLeft;
+    prev.disabled=x<=2; next.disabled=x>=max-2;
+    var pv=Math.min(n,perView()), cur=Math.min(n,Math.round(x/Math.max(1,stepW()))+1), w=Math.min(100,pv/n*100);
+    fill.style.width=w+'%';
+    fill.style.left=(max>0?(x/max)*(100-w):0)+'%';
+    count.textContent=pad(Math.min(n,cur+pv-1))+' / '+pad(n);
+  }
+  function go(dir){var max=track.scrollWidth-track.clientWidth; var x=track.scrollLeft+dir*stepW(); track.scrollTo({left:Math.max(0,Math.min(max,x)),behavior:'smooth'})}
+  prev.addEventListener('click',function(){go(-1); stopAuto()});
+  next.addEventListener('click',function(){go(1); stopAuto()});
+  track.addEventListener('scroll',update,{passive:true});
+  window.addEventListener('resize',update);
+  track.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){go(1);e.preventDefault()}else if(e.key==='ArrowLeft'){go(-1);e.preventDefault()}});
+
+  // wejście: karty odsłaniają się, gdy sekcja jest w widoku
+  var sec=document.getElementById('opinie'), shown=false;
+  function revealCheck(){
+    if(shown) return; var r=sec.getBoundingClientRect(), vh=window.innerHeight;
+    if(r.top<vh*0.7 && r.bottom>0){ shown=true; [].slice.call(track.querySelectorAll('.rev__card')).forEach(function(c){c.classList.add('in')}) }
+  }
+  window.addEventListener('scroll',revealCheck,{passive:true}); window.addEventListener('resize',revealCheck);
+
+  // autoodtwarzanie (wstrzymane po najechaniu/fokusie i po ręcznym sterowaniu)
+  var timer=null, auto=!matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function tick(){var max=track.scrollWidth-track.clientWidth; if(track.scrollLeft>=max-2) track.scrollTo({left:0,behavior:'smooth'}); else go(1)}
+  function startAuto(){ if(!auto||timer) return; timer=setInterval(function(){ var r=sec.getBoundingClientRect(); if(r.top<window.innerHeight*0.6 && r.bottom>window.innerHeight*0.4) tick() },5200) }
+  function stopAuto(){ if(timer){clearInterval(timer); timer=null} auto=false }
+  track.addEventListener('mouseenter',function(){ if(timer){clearInterval(timer); timer=null} });
+  track.addEventListener('mouseleave',function(){ if(auto) startAuto() });
+  track.addEventListener('focusin',stopAuto);
+
+  window.renderReviews(SAMPLE);   // TODO: zastąpić danymi z API Google
+  startAuto();
+})();
+</script>
+
+<section class="offers" id="oferty">
+  <div class="offers__in">
+    <div class="offers__head">
+      <p class="offers__eyebrow reveal">Oferty</p>
+      <h2 class="offers__title reveal d1">Oferty w sprzedaży <br>i wynajmie</h2>
+      <p class="offers__lead reveal d2">Pełne dane, zdjęcia i rzuty każdego lokalu dostępne są w ogłoszeniach na oficjalnych profilach na portalach nieruchomości.</p>
+    </div>
+
+    <div class="offers__grid">
+      <article class="card card--light reveal">
+        <div class="card__head">
+          <div class="card__mark">OD</div>
+          <div><h3 class="card__name">Otodom.pl</h3><p class="card__tag">Profil doradcy</p></div>
+        </div>
+        <h4 class="card__h">Mieszkania i lokale w Warszawie</h4>
+        <p class="card__p">Szczegółowa dokumentacja zdjęciowa, zweryfikowany stan prawny i rzuty. Przy każdym ogłoszeniu znajdziesz bezpośredni kontakt do mnie.</p>
+        <ul class="card__list">
+          <li>Pełna fotodokumentacja</li>
+          <li>Sprawdzona księga wieczysta</li>
+          <li>Bezpośredni kontakt do doradcy</li>
+        </ul>
+        <!-- TODO: wstaw link do swojego profilu na Otodom -->
+        <a class="btn" href="https://www.otodom.pl/" target="_blank" rel="noopener">Zobacz moje oferty na Otodom <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </article>
+
+      <article class="card reveal d1">
+        <div class="card__head">
+          <div class="card__mark">MZ</div>
+          <div><h3 class="card__name">Morizon.pl</h3><p class="card__tag">Profil doradcy</p></div>
+        </div>
+        <h4 class="card__h">Śródmieście, Mokotów, Żoliborz, Wilanów</h4>
+        <p class="card__p">Wyselekcjonowane oferty w kluczowych dzielnicach stolicy wraz z opisem okolicy, infrastruktury i komunikacji.</p>
+        <ul class="card__list">
+          <li>Aktualne statusy lokali</li>
+          <li>Jasne warunki transakcji</li>
+          <li>Rzuty i informacje o czynszu</li>
+        </ul>
+        <!-- TODO: wstaw link do swojego profilu na Morizon -->
+        <a class="btn btn--line" href="https://www.morizon.pl/" target="_blank" rel="noopener">Zobacz moje oferty na Morizon <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </article>
+    </div>
+
+    <div class="offmarket reveal">
+      <div class="offmarket__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3M14 9l2 2"/></svg></div>
+      <div class="offmarket__txt">
+        <h3 class="offmarket__h">Szukasz nieruchomości off-market (dyskretna sprzedaż)?</h3>
+        <p class="offmarket__p">Część mieszkań nie trafia na portale na prośbę właścicieli. Skontaktuj się ze mną bezpośrednio.</p>
+      </div>
+      <a class="btn btn--solid" href="#kontakt">Zapytaj o oferty off-market</a>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section class="ct ct--b" id="kontakt">
+  <div class="ctb__head">
+    <p class="ct__eyebrow reveal">Bezpośredni kontakt</p>
+    <h2 class="ct__title reveal d1">Porozmawiajmy bez zbędnych barier</h2>
+    <p class="ct__lead reveal d2">Nie ma infolinii ani długich formularzy. Odbieram osobiście lub oddzwaniam tak szybko, jak to możliwe.</p>
+  </div>
+  <a class="ctb__tile ctb__tile--phone reveal" href="tel:+48600000000">
+    <span class="ct__label">Telefon bezpośredni</span>
+    <span class="ctb__big">+48 600 000 000</span>
+    <span class="ct__act">Zadzwoń teraz <i><svg class="arr arr--d" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></span>
+  </a>
+  <a class="ctb__tile ctb__tile--wa reveal d1" href="https://wa.me/48600000000" target="_blank" rel="noopener">
+    <span class="ct__label">Czat WhatsApp</span>
+    <span class="ctb__mid">Napisz na WhatsApp</span>
+    <span class="ct__act">Szybka odpowiedź <i><svg class="arr arr--d" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></span>
+  </a>
+  <a class="ctb__tile ctb__tile--mail reveal d2" href="mailto:kontakt@example.pl">
+    <span class="ct__label">Poczta e-mail</span>
+    <span class="ctb__mid">kontakt@example.pl</span>
+    <span class="ct__act">Wyślij wiadomość <i><svg class="arr arr--d" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></span>
+  </a>
+  <a class="ctb__tile ctb__tile--map reveal d3" href="https://www.google.com/maps/search/?api=1&amp;query=ul.+Mokotowska+49+Warszawa" target="_blank" rel="noopener">
+    <span class="ct__label">Biuro &amp; spotkania</span>
+    <span class="ctb__mid">ul. Mokotowska 49<small>00-542 Warszawa</small></span>
+    <span class="ct__act">Po wcześniejszym kontakcie <i><svg class="arr arr--d" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></span>
+  </a>
+  <div class="ctb__foot reveal d3">
+    <div class="ct__avail"><span class="ct__dot"></span><span>Dostępność telefoniczna: <b>poniedziałek – piątek 09:00 – 19:00</b>, soboty do uzgodnienia.</span></div>
+    <p class="ct__priv"><span></span>Pełna poufność powierzonych informacji i dokumentów</p>
+  </div>
+</section>
+
+<footer class="ft">
+  <div class="ft__top">
+    <div class="ft__brand">
+      <b>Rumianowski</b>
+      <p>Nieruchomości premium<br>Warszawa i okolice</p>
+    </div>
+    <nav class="ft__col" aria-label="Nawigacja w stopce">
+      <h4>Nawigacja</h4>
+      <a href="#uslugi">Usługi</a><a href="#o-mnie">O mnie</a><a href="#opinie">Opinie</a><a href="#oferty">Oferty</a><a href="#kontakt">Kontakt</a>
+    </nav>
+    <div class="ft__col">
+      <h4>Kontakt</h4>
+      <a href="tel:+48600000000">+48 600 000 000</a>
+      <a href="mailto:kontakt@example.pl">kontakt@example.pl</a>
+      <span>ul. Mokotowska 49, 00-542 Warszawa</span>
+    </div>
+  </div>
+  <div class="ft__bottom">
+    <span>© 2026 Marcin Rumianowski. Wszelkie prawa zastrzeżone.</span>
+    <a href="#top">Powrót na górę ↑</a>
+  </div>
+</footer>
+
+
+
+
+
+<script>
+// pojawianie sekcji przy przewijaniu. Używam pozycji elementu (getBoundingClientRect), a nie IntersectionObserver —
+// ten ostatni nie widzi elementów ukrytych przez clip-path, więc sekcja nigdy by się nie pokazała.
+(function(){
+  document.documentElement.classList.add('js');
+  var els=[].slice.call(document.querySelectorAll('.reveal')), ticking=false;
+  function check(){
+    ticking=false;
+    var vh=window.innerHeight||document.documentElement.clientHeight;
+    els=els.filter(function(e){
+      var r=e.getBoundingClientRect();
+      if(r.top<vh*0.92 && r.bottom>0){e.classList.add('in');return false}
+      return true;
+    });
+    if(!els.length){window.removeEventListener('scroll',req);window.removeEventListener('resize',req)}
+  }
+  function req(){if(!ticking){ticking=true;requestAnimationFrame(check)}}
+  window.addEventListener('scroll',req,{passive:true});
+  window.addEventListener('resize',req);
+  window.addEventListener('load',req);
+  req();
+})();
+</script>
+
+
+<script>
+// kafelki usług: startują przesunięte względem siebie, wyrównują się wraz z przewijaniem do sekcji.
+// Każdy kafelek ma własną „bezwładność", więc dojeżdżają na miejsce w lekko różnym tempie (bez przeregulowania).
+(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var speed=[.085,.14,.065,.11];
+  [].slice.call(document.querySelectorAll('.services')).forEach(function(sec){
+    var tiles=[].slice.call(sec.querySelectorAll('.svc'));
+    var cur=tiles.map(function(){return 0}), target=0, raf=null;
+    function calc(){
+      var r=sec.getBoundingClientRect(), vh=window.innerHeight||document.documentElement.clientHeight;
+      var p=(vh-r.top)/(vh*0.82); p=p<0?0:p>1?1:p;
+      target=p*p*(3-2*p);               // smoothstep
+      if(!raf) raf=requestAnimationFrame(tick);
+    }
+    function tick(){
+      var moving=false;
+      tiles.forEach(function(t,i){
+        cur[i]+=(target-cur[i])*speed[i];
+        if(Math.abs(target-cur[i])<0.0008) cur[i]=target; else moving=true;
+        t.style.setProperty('--sp',cur[i].toFixed(4));
+      });
+      raf=moving?requestAnimationFrame(tick):null;
+    }
+    tiles.forEach(function(t){t.style.setProperty('--sp',0)});
+    window.addEventListener('scroll',calc,{passive:true});
+    window.addEventListener('resize',calc);
+    calc();
+  });
+})();
+</script>
+
+<script>
+// menu przypięte: tło po przewinięciu + podświetlenie aktywnej sekcji
+(function(){
+  var nav=document.querySelector('.nav'); if(!nav) return;
+  var links=[].slice.call(nav.querySelectorAll('.nav__links a[href^="#"]'));
+  function getMap(){return links.map(function(a){return {a:a, el:document.querySelector(a.getAttribute('href'))}}).filter(function(x){return x.el})}
+  var ticking=false, lastY=window.scrollY;
+  function update(){
+    ticking=false;
+    var y=window.scrollY;
+    nav.classList.toggle('is-scrolled', y>60);
+    // chowaj przy przewijaniu w dół, pokaż przy przewijaniu w górę
+    if(y>240 && y>lastY+4) nav.classList.add('is-hidden');
+    else if(y<lastY-4 || y<=240) nav.classList.remove('is-hidden');
+    lastY=y;
+    var line=window.innerHeight*0.35, active=null;
+    getMap().forEach(function(x){var r=x.el.getBoundingClientRect(); if(r.top<=line && r.bottom>line) active=x});
+    links.forEach(function(a){a.classList.toggle('is-active', !!active && active.a===a)});
+  }
+  function req(){if(!ticking){ticking=true;requestAnimationFrame(update)}}
+  window.addEventListener('scroll',req,{passive:true});
+  window.addEventListener('resize',req);
+  update();
+})();
+</script>
+
+<script>
+// sekcja „proces": oś czasu rysuje się z przewijaniem, kroki zapalają się kolejno
+(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  function clamp(x){return x<0?0:x>1?1:x}
+  var sec=document.querySelector('.process'); if(!sec) return;
+  var steps=[].slice.call(sec.querySelectorAll('.pa__step')), cur=0, tgt=0, raf=null;
+  function calc(){
+    var r=sec.getBoundingClientRect(), vh=window.innerHeight||document.documentElement.clientHeight;
+    tgt=clamp((clamp((vh-r.top)/(vh*0.95))-0.12)/0.78);
+    if(!raf) raf=requestAnimationFrame(tick);
+  }
+  function tick(){
+    cur+=(tgt-cur)*0.1; if(Math.abs(tgt-cur)<0.001) cur=tgt;
+    sec.style.setProperty('--pp',cur.toFixed(4));
+    steps.forEach(function(s,i){ s.classList.toggle('on', cur>=(i+0.15)/4) });
+    raf=(cur!==tgt)?requestAnimationFrame(tick):null;
+  }
+  sec.style.setProperty('--pp',0);
+  window.addEventListener('scroll',calc,{passive:true}); window.addEventListener('resize',calc); calc();
+})();
+</script>
+
+<!-- Przełącznik układu sekcji „Zakres usług i wsparcia" (narzędzie podglądu — można usunąć razem z blokiem skryptu poniżej) -->
+<div class="swt" id="swt" role="group" aria-label="Układ sekcji Zakres usług i wsparcia">
+  <button type="button" class="swt__toggle" id="swt-toggle" aria-expanded="false" aria-label="Zmień układ sekcji Zakres usług">⚙</button>
+  <div class="swt__panel">
+    <span class="swt__l">Zakres usług</span>
+    <button type="button" data-v="alt" class="is-on">Asymetryczny</button>
+    <button type="button" data-v="sym">Klasyczny</button>
+  </div>
+</div>
+<script>
+(function(){
+  var root=document.documentElement, btns=[].slice.call(document.querySelectorAll('.swt__panel button'));
+  function visibleId(v){return v==='sym'?'uslugi':'zakres'}
+  function apply(v, scroll){
+    root.setAttribute('data-services', v);
+    btns.forEach(function(b){b.classList.toggle('is-on', b.dataset.v===v)});
+    // linki „Usługi" w menu i stopce prowadzą do aktualnie widocznej wersji
+    [].forEach.call(document.querySelectorAll('a[href="#uslugi"], a[href="#zakres"]'),function(a){a.setAttribute('href','#'+visibleId(v))});
+    try{localStorage.setItem('services-layout',v)}catch(e){}
+    window.dispatchEvent(new Event('resize'));
+    if(scroll){var el=document.getElementById(visibleId(v)); if(el) window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY, behavior:'auto'})}
+  }
+  var saved='alt'; try{saved=localStorage.getItem('services-layout')||'alt'}catch(e){}
+  apply(saved==='sym'?'sym':'alt', false);
+  btns.forEach(function(b){b.addEventListener('click',function(){apply(b.dataset.v, true)})});
+  var sw=document.getElementById('swt'), tg=document.getElementById('swt-toggle');
+  tg.addEventListener('click',function(e){e.stopPropagation(); var o=sw.classList.toggle('is-open'); tg.setAttribute('aria-expanded',o)});
+  document.addEventListener('click',function(e){if(!sw.contains(e.target)){sw.classList.remove('is-open'); tg.setAttribute('aria-expanded','false')}});
+})();
+</script>
+
+<!-- Zafiksowany szybki kontakt (prawy dolny róg). TODO: podmienić dane kontaktowe na prawdziwe -->
+<div class="qc" id="qc">
+  <div class="qc__panel" id="qc-panel" role="dialog" aria-label="Szybki kontakt">
+    <div class="qc__h">Szybki kontakt</div>
+    <a class="qc__row" href="tel:+48600000000"><span class="qc__t"><small>Zadzwoń</small><b>+48 600 000 000</b></span><i><svg class="arr arr--d" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+    <a class="qc__row" href="https://wa.me/48600000000" target="_blank" rel="noopener"><span class="qc__t"><small>WhatsApp</small><b>Napisz do mnie</b></span><i><svg class="arr arr--d" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+    <a class="qc__row" href="mailto:kontakt@example.pl"><span class="qc__t"><small>E-mail</small><b>kontakt@example.pl</b></span><i><svg class="arr arr--d" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></a>
+  </div>
+  <button class="qc__btn" id="qc-btn" type="button" title="Szybki kontakt" aria-label="Szybki kontakt" aria-expanded="false" aria-controls="qc-panel">
+    <svg class="qc__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+    <span class="qc__x" aria-hidden="true">✕</span>
+    <span class="qc__lbl">Szybki kontakt</span>
+  </button>
+</div>
+<script>
+// szybki kontakt: rozwijany panel; przycisk jest zawsze widoczny
+(function(){
+  var qc=document.getElementById('qc'), btn=document.getElementById('qc-btn');
+  function toggle(open){var o=open!=null?open:!qc.classList.contains('is-open'); qc.classList.toggle('is-open',o); btn.setAttribute('aria-expanded',o)}
+  btn.addEventListener('click',function(e){e.stopPropagation(); toggle()});
+  document.addEventListener('click',function(e){if(!qc.contains(e.target)) toggle(false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape') toggle(false)});
+})();
+</script>
+</body>
+</html>

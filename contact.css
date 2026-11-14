@@ -1,0 +1,83 @@
+/* ===== SEKCJA KONTAKT (jasne kafelki) + STOPKA ===== */
+.ct{
+  --gold:#C8A56A; --ink:#111;
+  --pad:clamp(20px,4vw,64px);
+  --edge:max(var(--pad), (100vw - 1280px) / 2);
+  --ease:cubic-bezier(.22,.61,.36,1);
+  position:relative; height:100svh; box-sizing:border-box; overflow:clip;
+  padding:50px var(--edge);                          /* 50 px zapasu u góry i u dołu */
+  font-family:"Inter",system-ui,sans-serif;
+}
+.ct__eyebrow{display:flex; align-items:center; gap:14px; font-size:10px; font-weight:600; letter-spacing:.32em; text-transform:uppercase}
+.ct__eyebrow::before{content:""; width:34px; height:1px; background:var(--gold)}
+.ct__title{margin-top:clamp(6px,1.4vh,18px); font-weight:800; font-size:clamp(26px, min(4.2vw, 7.4vh), 72px); line-height:1; letter-spacing:-0.04em; text-transform:uppercase}
+.ct__lead{margin-top:clamp(8px,1.8vh,22px); max-width:480px; font-size:clamp(12px, min(1vw, 1.8vh), 16px); font-weight:300; line-height:1.6}
+.ct__label{font-size:9.5px; font-weight:600; letter-spacing:.24em; text-transform:uppercase; color:var(--gold)}
+.ct__act{display:inline-flex; align-items:center; gap:12px; font-size:10.5px; font-weight:600; letter-spacing:.18em; text-transform:uppercase}
+.ct__act i{font-style:normal; font-size:14px; letter-spacing:0; transition:transform .35s var(--ease)}
+.ct__avail{display:flex; align-items:center; gap:12px; font-size:clamp(11.5px,1.55vh,14px); font-weight:300; line-height:1.5}
+.ct__avail b{font-weight:600}
+.ct__dot{flex:none; width:8px; height:8px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 4px rgba(200,165,106,.22)}
+.ct__priv{display:flex; align-items:center; gap:12px; font-size:10px; font-weight:600; letter-spacing:.18em; text-transform:uppercase}
+.ct__priv span{width:14px; height:1px; background:var(--gold)}
+
+/* ============ jasne kafelki ============ */
+.ct--b{background:#f4f2ee; color:var(--ink); display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); grid-template-rows:minmax(0,1.15fr) minmax(0,1fr) auto; padding-left:0; padding-right:0}
+.ctb__head{grid-column:1 / 3; grid-row:1; padding:0 clamp(20px,2.4vw,40px) clamp(10px,2.4vh,30px) var(--edge); display:flex; flex-direction:column; justify-content:flex-end}
+.ct--b .ct__lead{color:rgba(17,17,17,.7)}
+.ctb__tile{
+  position:relative; display:flex; flex-direction:column; justify-content:space-between; text-decoration:none; color:var(--ink);
+  background:#fff; border:1px solid rgba(17,17,17,.14); margin:-1px 0 0 -1px;
+  padding:clamp(12px,2.6vh,34px) clamp(16px,1.8vw,30px);
+  transition:background .5s var(--ease);
+}
+.ctb__tile::after{content:""; position:absolute; left:-1px; right:-1px; bottom:-1px; height:2px; background:var(--gold); transform:scaleX(0); transform-origin:left; transition:transform .7s var(--ease)}
+.ctb__tile:hover::after{transform:scaleX(1)}
+.ctb__tile:hover .ct__act i{transform:translateX(5px)}
+.ctb__tile--phone{grid-column:3 / 5; grid-row:1; background:#111; color:#fff; border-color:#111}
+.ctb__tile--phone:hover{background:#1a1a1a}
+.ctb__big{font-weight:800; font-size:clamp(26px, min(4vw, 8vh), 70px); letter-spacing:-0.04em; line-height:1}
+.ctb__mid{font-weight:800; font-size:clamp(17px, min(1.9vw, 3.6vh), 30px); letter-spacing:-0.03em; line-height:1.1}
+.ctb__mid small{display:block; margin-top:6px; font-size:clamp(11px,1.5vh,14px); font-weight:300; letter-spacing:0; color:rgba(17,17,17,.6)}
+.ctb__tile--wa{grid-column:1; grid-row:2; margin-left:0}
+.ctb__tile--mail{grid-column:2; grid-row:2}
+.ctb__tile--map{grid-column:3 / 5; grid-row:2}
+.ctb__foot{grid-column:1 / 5; grid-row:3; display:flex; justify-content:space-between; align-items:center; gap:16px 32px; flex-wrap:wrap; padding:clamp(10px,2vh,22px) var(--edge) 0}
+
+/* ============ STOPKA ============ */
+.ft{
+  --gold:#C8A56A; --edge:max(clamp(20px,4vw,64px), (100vw - 1280px) / 2);
+  background:#000; color:#fff; padding:clamp(36px,7vh,80px) var(--edge) 0; overflow:clip;
+  font-family:"Inter",system-ui,sans-serif;
+}
+.ft__top{padding-bottom:clamp(18px,3vh,36px); display:grid; grid-template-columns:1.6fr 1fr 1.3fr; gap:clamp(20px,3vw,56px)}
+.ft__brand b{font-size:clamp(15px,1.4vw,20px); font-weight:800; letter-spacing:-0.02em; text-transform:uppercase}
+.ft__brand p{margin-top:12px; font-size:13px; font-weight:300; line-height:1.6; color:rgba(255,255,255,.6)}
+.ft__col{display:flex; flex-direction:column; gap:9px; font-size:13px; font-weight:300}
+.ft__col h4{font-size:9.5px; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--gold); margin-bottom:6px}
+.ft__col a,.ft__col span{color:rgba(255,255,255,.75); text-decoration:none; width:fit-content; position:relative; transition:color .3s}
+.ft__col a:hover{color:#fff}
+.ft__col a::after{content:""; position:absolute; left:0; right:0; bottom:-2px; height:1px; background:var(--gold); transform:scaleX(0); transform-origin:left; transition:transform .4s cubic-bezier(.22,.61,.36,1)}
+.ft__col a:hover::after{transform:scaleX(1)}
+.ft__bottom{display:flex; justify-content:space-between; gap:12px 24px; flex-wrap:wrap; padding:clamp(14px,2.4vh,26px) 0; margin-top:clamp(10px,2vh,22px); border-top:1px solid rgba(255,255,255,.14); font-size:11px; font-weight:400; letter-spacing:.06em; color:rgba(255,255,255,.55)}
+.ft__bottom a{color:rgba(255,255,255,.8); text-decoration:none}
+.ft__bottom a:hover{color:var(--gold)}
+
+/* animacje wejścia (przez skrypt .reveal) */
+.js .ctb__tile.reveal{opacity:1; transform:none; clip-path:inset(100% 0 0 0); transition:clip-path .95s cubic-bezier(.33,.9,.4,1), background .5s var(--ease); will-change:clip-path}
+.js .ctb__tile.reveal.in{clip-path:inset(-2px -2px -3px -2px)}
+@media (prefers-reduced-motion:reduce){.js .ctb__tile.reveal{clip-path:none; transition:none}}
+
+/* wąskie ekrany */
+@media (max-width:900px){
+  .ct{height:auto; padding:56px var(--pad); display:block}
+  .ct__avail{margin-top:24px}
+  .ct--b{padding:56px 0 0; display:block}
+  .ctb__head{padding:0 var(--pad) 28px}
+  .ctb__tile{margin:-1px 0 0; min-height:150px; gap:16px}
+  .ctb__foot{padding:20px var(--pad)}
+  .ft__top{grid-template-columns:1fr 1fr}
+}
+
+/* poprawki: tytuł mieści się w swojej kolumnie; wielki napis w stopce na całą szerokość treści */
+.ct--b .ct__title{font-size:clamp(24px, min(3.3vw, 6.6vh), 60px)}
