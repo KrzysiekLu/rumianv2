@@ -348,3 +348,17 @@ html[data-services="sym"] #zakres{display:none}
   #uslugi .svc__p{font-size:clamp(11.5px,1.5vh,14px); min-height:0}
   #uslugi .svc__tag{min-height:calc(3em + 6px)}
 }
+
+/* telefony/tablety: bez wjazdu kafelków z boków (na wąskim ekranie kafelki nachodziły na nagłówek) */
+@media (max-width:1100px){
+  .services .svc,.services--alt .svc{transform:none !important; opacity:1 !important}
+}
+
+/* telefony: tytuł sekcji wyraźnie największy, większa interlinia; kafelki delikatnie mniejsze */
+@media (max-width:760px){
+  .services .services__title{font-size:clamp(34px,10.5vw,44px); line-height:1.08}
+  .services .services__lead{font-size:14px}
+  .services .svc__h,.services--alt .svc__h{font-size:clamp(19px,5.6vw,23px); line-height:1.2}
+  .services .svc__p,.services--alt .svc__p{font-size:13.5px; line-height:1.6}
+  .services .svc{padding-top:24px; padding-bottom:24px}
+}

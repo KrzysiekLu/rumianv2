@@ -191,3 +191,6 @@ html{scroll-behavior:smooth}
   .offmarket__h{font-size:clamp(14px,2vh,19px)}
   .offmarket__p{font-size:clamp(11.5px,1.5vh,13.5px)}
 }
+
+/* telefony: bez czarnego pasa pod sekcją ofert */
+@media (max-width:860px){ .offers{padding-bottom:0} }

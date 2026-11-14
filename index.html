@@ -9,14 +9,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="img/warszawa.webp">
 <link rel="preload" as="image" href="img/varso.webp?v=4">
-<link rel="stylesheet" href="hero.css?v=40">
-<link rel="stylesheet" href="offers.css?v=17">
-<link rel="stylesheet" href="services.css?v=32">
-<link rel="stylesheet" href="nav.css?v=3">
+<link rel="stylesheet" href="hero.css?v=41">
+<link rel="stylesheet" href="offers.css?v=18">
+<link rel="stylesheet" href="services.css?v=34">
+<link rel="stylesheet" href="nav.css?v=4">
 <link rel="stylesheet" href="process.css?v=7">
 <link rel="stylesheet" href="about.css?v=7">
 <link rel="stylesheet" href="reviews.css?v=3">
-<link rel="stylesheet" href="contact.css?v=6">
+<link rel="stylesheet" href="contact.css?v=7">
 <link rel="stylesheet" href="quick.css?v=4">
 <link rel="stylesheet" href="art.css?v=16">
 </head>
@@ -40,7 +40,19 @@
     <a href="#uslugi">Usługi</a>
     <a href="#kontakt">Kontakt</a>
   </nav>
+  <button class="nav__burger" id="nav-burger" type="button" aria-label="Otwórz menu" aria-expanded="false" aria-controls="nav-overlay"><span></span><span></span><span></span></button>
 </header>
+
+<div class="nav__overlay" id="nav-overlay" aria-hidden="true">
+  <nav class="nav__overlay-links" aria-label="Menu mobilne">
+    <a href="#uslugi">Usługi</a>
+    <a href="#o-mnie">O mnie</a>
+    <a href="#opinie">Opinie</a>
+    <a href="#oferty">Oferty</a>
+    <a href="#kontakt">Kontakt</a>
+  </nav>
+  <a class="nav__overlay-tel" href="tel:+48600000000">+48 600 000 000</a>
+</div>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <filter id="num-outline" x="-5%" y="-5%" width="110%" height="110%">
@@ -666,6 +678,17 @@
   btn.addEventListener('click',function(e){e.stopPropagation(); toggle()});
   document.addEventListener('click',function(e){if(!qc.contains(e.target)) toggle(false)});
   document.addEventListener('keydown',function(e){if(e.key==='Escape') toggle(false)});
+})();
+</script>
+
+<script>
+// menu mobilne (hamburger)
+(function(){
+  var btn=document.getElementById('nav-burger'), ov=document.getElementById('nav-overlay');
+  function set(o){document.documentElement.classList.toggle('menu-open',o); btn.setAttribute('aria-expanded',o); btn.setAttribute('aria-label',o?'Zamknij menu':'Otwórz menu'); ov.setAttribute('aria-hidden',!o)}
+  btn.addEventListener('click',function(){set(!document.documentElement.classList.contains('menu-open'))});
+  [].forEach.call(ov.querySelectorAll('a'),function(a){a.addEventListener('click',function(){set(false)})});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape') set(false)});
 })();
 </script>
 </body>

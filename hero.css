@@ -211,3 +211,13 @@ body{font-family:"Inter",system-ui,sans-serif;color:var(--ink);background:#fff}
   .hero__actions{flex-direction:row; margin-top:14px; gap:8px}
   .hero__btn{flex:1 1 0; padding:14px 8px; font-size:9.5px; letter-spacing:.12em; gap:8px; white-space:nowrap}
 }
+
+/* mobile: napisy bliżej środka — nazwisko niżej w kadrze, wszystko wyśrodkowane */
+@media (max-width:760px){
+  :root{--title-top-n:30}
+  .hero__title{text-align:center; left:0; right:0}
+  .hero__title--over{padding-left:0}
+  .hero__mid{align-items:center; text-align:center}
+  .hero__sub{margin-left:0}
+  .hero__actions{justify-content:center}
+}

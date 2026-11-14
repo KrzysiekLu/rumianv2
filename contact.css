@@ -81,3 +81,11 @@
 
 /* poprawki: tytuł mieści się w swojej kolumnie; wielki napis w stopce na całą szerokość treści */
 .ct--b .ct__title{font-size:clamp(24px, min(3.3vw, 6.6vh), 60px)}
+
+/* telefony: luźniejsza stopka sekcji kontaktu (dostępność + poufność) */
+@media (max-width:900px){
+  .ctb__foot{flex-direction:column; align-items:flex-start; gap:18px; padding:28px var(--pad) 36px}
+  .ctb__foot .ct__avail{margin-top:0; align-items:flex-start; line-height:1.65}
+  .ctb__foot .ct__dot{margin-top:6px}
+  .ctb__foot .ct__priv{padding-top:18px; border-top:1px solid rgba(17,17,17,.14); width:100%; line-height:1.7}
+}
