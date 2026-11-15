@@ -16,7 +16,7 @@ try{ if(sessionStorage.getItem('site-unlocked')!=='1') document.documentElement.
 <link rel="stylesheet" href="gate.css?v=1">
 <link rel="stylesheet" href="hero.css?v=41">
 <link rel="stylesheet" href="offers.css?v=18">
-<link rel="stylesheet" href="services.css?v=34">
+<link rel="stylesheet" href="services.css?v=35">
 <link rel="stylesheet" href="nav.css?v=4">
 <link rel="stylesheet" href="process.css?v=7">
 <link rel="stylesheet" href="about.css?v=7">
@@ -668,13 +668,14 @@ try{ if(sessionStorage.getItem('site-unlocked')!=='1') document.documentElement.
   <div class="swt__panel">
     <span class="swt__l">Zakres usług</span>
     <button type="button" data-v="alt" class="is-on">Asymetryczny</button>
-    <button type="button" data-v="sym">Klasyczny</button>
+    <button type="button" data-v="sym">Szachownica</button>
+    <button type="button" data-v="row">Rząd</button>
   </div>
 </div>
 <script>
 (function(){
   var root=document.documentElement, btns=[].slice.call(document.querySelectorAll('.swt__panel button'));
-  function visibleId(v){return v==='sym'?'uslugi':'zakres'}
+  function visibleId(v){return (v==='sym'||v==='row')?'uslugi':'zakres'}
   function apply(v, scroll){
     root.setAttribute('data-services', v);
     btns.forEach(function(b){b.classList.toggle('is-on', b.dataset.v===v)});
@@ -685,7 +686,8 @@ try{ if(sessionStorage.getItem('site-unlocked')!=='1') document.documentElement.
     if(scroll){var el=document.getElementById(visibleId(v)); if(el) window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY, behavior:'auto'})}
   }
   var saved='alt'; try{saved=localStorage.getItem('services-layout')||'alt'}catch(e){}
-  apply(saved==='sym'?'sym':'alt', false);
+  var q=(location.search.match(/[?&]services=(alt|sym|row)/)||[])[1]; if(q) saved=q;   // podgląd: ?services=row
+  apply(['alt','sym','row'].indexOf(saved)>-1?saved:'alt', false);
   btns.forEach(function(b){b.addEventListener('click',function(){apply(b.dataset.v, true)})});
   var sw=document.getElementById('swt'), tg=document.getElementById('swt-toggle');
   tg.addEventListener('click',function(e){e.stopPropagation(); var o=sw.classList.toggle('is-open'); tg.setAttribute('aria-expanded',o)});

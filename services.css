@@ -308,8 +308,8 @@
 
 /* ===== przełącznik wersji sekcji „Zakres usług i wsparcia": domyślnie widoczna asymetryczna, klasyczna ukryta ===== */
 #uslugi{display:none}
-html[data-services="sym"] #uslugi{display:block}
-html[data-services="sym"] #zakres{display:none}
+html[data-services="sym"] #uslugi,html[data-services="row"] #uslugi{display:block}
+html[data-services="sym"] #zakres,html[data-services="row"] #zakres{display:none}
 .swt{
   position:fixed; left:14px; bottom:14px; z-index:90; display:flex; align-items:center;
   background:rgba(10,10,10,.88); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
@@ -331,22 +331,22 @@ html[data-services="sym"] #zakres{display:none}
 
 /* ===== sekcja usług (klasyczna) — układ asymetryczny, desktop/laptop: czarny panel z nagłówkiem po lewej + kafelki o różnych szerokościach (5+3 / 3+5), 50 px zapasu góra/dół ===== */
 @media (min-width:1101px){
-  #uslugi{height:100svh; min-height:0; padding:50px 0; box-sizing:border-box; background:#fff}
-  #uslugi .services__in{height:100%; display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); grid-template-rows:minmax(0,1fr) minmax(0,1fr); flex:none}
-  #uslugi .services__grid{display:contents}
-  #uslugi .services__head{grid-column:1 / 5; grid-row:1; background:#000; padding:clamp(14px,3vh,36px) clamp(18px,2vw,32px) 0 var(--edge); display:flex; flex-direction:column; justify-content:flex-end}
-  #uslugi .services__foot{grid-column:1 / 5; grid-row:2; background:#000; border:0; padding:clamp(12px,2.4vh,28px) clamp(18px,2vw,32px) clamp(14px,3vh,36px) var(--edge); display:flex; align-items:flex-start}
-  #uslugi .services__title{font-size:clamp(24px, min(2.9vw, 5.4vh), 54px)}
-  #uslugi .services__lead{max-width:none; font-size:clamp(12px,min(.95vw,1.7vh),15px)}
-  #uslugi .svc{border:0; padding:clamp(12px,2.6vh,34px) clamp(16px,1.8vw,30px); min-height:0}
-  #uslugi .svc:nth-child(1){grid-column:5 / 10; grid-row:1; background:#fff}
-  #uslugi .svc:nth-child(2){grid-column:10 / 13; grid-row:1; background:#efede8}
-  #uslugi .svc:nth-child(3){grid-column:5 / 8; grid-row:2; background:#efede8}
-  #uslugi .svc:nth-child(4){grid-column:8 / 13; grid-row:2; background:#fff}
-  #uslugi .svc:hover{background:#f4f5f6}
-  #uslugi .svc__h{font-size:clamp(16px,min(1.5vw,2.8vh),24px)}
-  #uslugi .svc__p{font-size:clamp(11.5px,1.5vh,14px); min-height:0}
-  #uslugi .svc__tag{min-height:calc(3em + 6px)}
+  html:not([data-services="row"]) #uslugi{height:100svh; min-height:0; padding:50px 0; box-sizing:border-box; background:#fff}
+  html:not([data-services="row"]) #uslugi .services__in{height:100%; display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); grid-template-rows:minmax(0,1fr) minmax(0,1fr); flex:none}
+  html:not([data-services="row"]) #uslugi .services__grid{display:contents}
+  html:not([data-services="row"]) #uslugi .services__head{grid-column:1 / 5; grid-row:1; background:#000; padding:clamp(14px,3vh,36px) clamp(18px,2vw,32px) 0 var(--edge); display:flex; flex-direction:column; justify-content:flex-end}
+  html:not([data-services="row"]) #uslugi .services__foot{grid-column:1 / 5; grid-row:2; background:#000; border:0; padding:clamp(12px,2.4vh,28px) clamp(18px,2vw,32px) clamp(14px,3vh,36px) var(--edge); display:flex; align-items:flex-start}
+  html:not([data-services="row"]) #uslugi .services__title{font-size:clamp(24px, min(2.9vw, 5.4vh), 54px)}
+  html:not([data-services="row"]) #uslugi .services__lead{max-width:none; font-size:clamp(12px,min(.95vw,1.7vh),15px)}
+  html:not([data-services="row"]) #uslugi .svc{border:0; padding:clamp(12px,2.6vh,34px) clamp(16px,1.8vw,30px); min-height:0}
+  html:not([data-services="row"]) #uslugi .svc:nth-child(1){grid-column:5 / 10; grid-row:1; background:#fff}
+  html:not([data-services="row"]) #uslugi .svc:nth-child(2){grid-column:10 / 13; grid-row:1; background:#efede8}
+  html:not([data-services="row"]) #uslugi .svc:nth-child(3){grid-column:5 / 8; grid-row:2; background:#efede8}
+  html:not([data-services="row"]) #uslugi .svc:nth-child(4){grid-column:8 / 13; grid-row:2; background:#fff}
+  html:not([data-services="row"]) #uslugi .svc:hover{background:#f4f5f6}
+  html:not([data-services="row"]) #uslugi .svc__h{font-size:clamp(16px,min(1.5vw,2.8vh),24px)}
+  html:not([data-services="row"]) #uslugi .svc__p{font-size:clamp(11.5px,1.5vh,14px); min-height:0}
+  html:not([data-services="row"]) #uslugi .svc__tag{min-height:calc(3em + 6px)}
 }
 
 /* telefony/tablety: bez wjazdu kafelków z boków (na wąskim ekranie kafelki nachodziły na nagłówek) */
