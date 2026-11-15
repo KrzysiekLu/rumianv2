@@ -4,11 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rumianowski — Nieruchomości premium w Warszawie</title>
+<script>
+// zaślepka: do czasu wpisania hasła treść jest ukryta
+try{ if(sessionStorage.getItem('site-unlocked')!=='1') document.documentElement.classList.add('locked'); }catch(e){ document.documentElement.classList.add('locked'); }
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="img/warszawa.webp">
 <link rel="preload" as="image" href="img/varso.webp?v=4">
+<link rel="stylesheet" href="gate.css?v=1">
 <link rel="stylesheet" href="hero.css?v=41">
 <link rel="stylesheet" href="offers.css?v=18">
 <link rel="stylesheet" href="services.css?v=34">
@@ -31,6 +36,38 @@
   </filter>
 </svg>
 
+
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-label="Dostęp chroniony hasłem">
+  <form class="gate__box gate__form-wrap" id="gate-form" autocomplete="off">
+    <div class="gate__brand">Rumianowski</div>
+    <div class="gate__sub">Strona w przygotowaniu</div>
+    <div class="gate__form">
+      <label class="gate__label" for="gate-pass">Hasło dostępu</label>
+      <input class="gate__input" id="gate-pass" type="password" autocomplete="current-password" required>
+      <button class="gate__btn" type="submit">Wejdź</button>
+      <div class="gate__err" id="gate-err" role="alert"></div>
+    </div>
+  </form>
+</div>
+<script>
+// Uwaga: to prosta zaślepka po stronie przeglądarki (hasło jest porównywane jako skrót SHA-256).
+// Chroni przed przypadkowym wejściem, ale nie jest prawdziwym zabezpieczeniem treści.
+(function(){
+  var HASH='3d9c549921bbfcab79998b22ac76c88f824e9dbc01ab1db447a72e0a76daf266';
+  var root=document.documentElement, form=document.getElementById('gate-form'), input=document.getElementById('gate-pass'), err=document.getElementById('gate-err'), gate=document.getElementById('gate');
+  function hex(buf){return [].map.call(new Uint8Array(buf),function(b){return ('0'+b.toString(16)).slice(-2)}).join('')}
+  function unlock(){try{sessionStorage.setItem('site-unlocked','1')}catch(e){} root.classList.remove('locked'); window.dispatchEvent(new Event('resize'))}
+  if(root.classList.contains('locked')) setTimeout(function(){input.focus()},50);
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!(window.crypto&&crypto.subtle)){err.textContent='Ta przeglądarka nie obsługuje weryfikacji hasła (wymagany HTTPS).'; return}
+    crypto.subtle.digest('SHA-256',new TextEncoder().encode(input.value)).then(function(b){
+      if(hex(b)===HASH) unlock();
+      else{err.textContent='Nieprawidłowe hasło.'; input.value=''; gate.classList.remove('is-shake'); void gate.offsetWidth; gate.classList.add('is-shake'); input.focus()}
+    });
+  });
+})();
+</script>
 
 <header class="nav" id="top">
   <a class="nav__brand" href="#top">Rumianowski</a>
